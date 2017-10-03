@@ -17,13 +17,13 @@ class Header extends React.Component {
                     <Nav pullRight>
                         <NavItem
                             eventKey={1}
-                            href="#">
-                            Home
+                            href="/signin">
+                            Signin
                         </NavItem>
                         <NavItem
                             eventKey={2}
-                            href="#">
-                            Shop
+                            href="signup">
+                            Signup
                         </NavItem>
                         <NavItem
                             eventKey={3}
