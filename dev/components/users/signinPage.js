@@ -14,7 +14,7 @@ class signinPage extends React.Component {
         return (
             <div>
                 <h1> Hello Login </h1>
-                <LoginForm/>
+                <LoginForm> 555 </LoginForm>
             </div>
         );
     }
