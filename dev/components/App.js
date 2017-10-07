@@ -12,7 +12,9 @@ export default class App extends Component {
         return (
             <div>
                 <Header />
-                {this.props.children}
+                <div id="main-body" className="col-lg-9">
+                    {this.props.children}
+                </div>
                 <Footer />
             </div>
         )

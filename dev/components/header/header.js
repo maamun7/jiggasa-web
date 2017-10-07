@@ -4,7 +4,15 @@ import { Navbar, Nav, NavItem, Glyphicon } from 'react-bootstrap';
 class Header extends React.Component {
     render() {
         return (
-            <Navbar fixedTop>
+            <div id="top-bar" className="full-width">
+                <div className="col-lg-9 header-width">
+                    <div className="logo">
+                        <img src={ require('../../../public/assets/img/logo.jpg') } height={35}/>
+                    </div>
+                </div>
+            </div>
+
+            /*<Navbar fixedTop>
                 <Navbar.Header>
                     <Navbar.Brand>
                         <a href="/">
@@ -33,7 +41,7 @@ class Header extends React.Component {
                         </NavItem>
                     </Nav>
                 </Navbar.Collapse>
-            </Navbar>
+            </Navbar>*/
         );
     }
 }

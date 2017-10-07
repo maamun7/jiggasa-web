@@ -4,49 +4,54 @@ class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isGoing: true,
-            numberOfGuests: 5
+            full_name: '',
+            email: ''
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
-
-
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleInputChange(event) {
         const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
+        // const value = target.type === 'checkbox' ? target.checked : target.value;
 
-        const m_name = target.name === 'numberOfGuests' ? target.value : '';
-
-        console.log("Console LOG :", m_name);
+        this.state.full_name = (target.name === 'full_name') ? target.value : this.state.full_name;
+        this.state.email = (target.name === 'email') ? target.value : this.state.email
 
         this.setState({
-            [name]: value
+            full_name: this.state.full_name,
+            email: this.state.email
         });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.submitSignup(this.state);
     }
 
     render() {
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <label>
-                    Is going:
+                    Name:
                     <input
-                        name="isGoing"
-                        type="checkbox"
-                        checked={this.state.isGoing}
+                        name="full_name"
+                        type="text"
+                        value={this.state.full_name}
                         onChange={this.handleInputChange} />
                 </label>
                 <br />
                 <label>
-                    Number of guests:
+                    Email:
                     <input
-                        name="numberOfGuests"
-                        type="number"
-                        value={this.state.numberOfGuests}
+                        name="email"
+                        type="text"
+                        value={this.state.email}
                         onChange={this.handleInputChange} />
                 </label>
+                <br/>
+                <button type="submit">Submit</button>
             </form>
         );
     }

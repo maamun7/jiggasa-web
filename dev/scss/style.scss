@@ -1,16 +1,36 @@
-html {
-  height: 100%;
+#container {
+  margin: 0px;
+  padding: 0px;
 }
 
-body {
-  min-height: 100%;
+.full-width {
+  float: left;
+  width: 100%;
 }
 
-#main {
-  min-height: 500px;
-  margin-top: 50px;
+#top-bar {
+  height: 50px;
+  background-color: #fff;
+  border-top: 2px solid #63C44F;
+  border-bottom: 1.5px solid #EAEAEA;
 }
 
-#app {
-  min-height: 100vh;
+.header-width {
+  float: none;
+  margin: 0 auto !important;
+  overflow: auto;
+  padding-bottom: 2px;
+
+}
+
+.logo {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#main-body {
+  float: none;
+  height: auto;
+  overflow: auto;
+  margin:0 auto !important;
 }

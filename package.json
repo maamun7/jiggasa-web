@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack",
+    "build": "./node_modules/.bin/webpack",
     "start": "webpack-dev-server --inline --content-base ./src"
   },
   "repository": {
