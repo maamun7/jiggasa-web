@@ -1,5 +1,5 @@
 {
-  "name": "jiggasa-web",
+  "first_name": "jiggasa-web",
   "version": "1.0.0",
   "description": "Jiggasa web front made by react and redux",
   "main": "index.js",

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import LoginForm from '../form/loginForm';
-import * as userAction from '../../actions/userActions'
+import LoginForm from '../../_components/form/signinForm';
+import * as userAction from '../../_actions/userActions'
 
 class signinPage extends React.Component {
     constructor(props) {
