@@ -8,8 +8,6 @@ class signupContainer extends React.Component {
     constructor(props) {
         super(props);
         this.handleSubmitSignup = this.handleSubmitSignup.bind(this);
-
-        console.log("Container response_props:", this.props);
     }
 
     handleSubmitSignup(inputs) {
@@ -18,6 +16,7 @@ class signupContainer extends React.Component {
     }
 
     render() {
+        console.log("Ballll :", this.props.response);
         return (
             <div>
                 <h1> User registration </h1>
@@ -30,7 +29,7 @@ class signupContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        signup: state.signUp
+        response: state.response
     }
 };
 

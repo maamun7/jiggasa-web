@@ -1,10 +1,9 @@
-export const signupReducer = (state = [], action) => {
+export const signupReducer = (state = null, action) => {
     switch (action.type) {
         case 'SIGNUP_SUCCESS':
-            return [
-                ...state,
-                Object.assign({}, action.response)
-            ];
+
+            console.log("DEBUGG HIIIIIIIII:", action.response);
+            return {...state, response : action.response}
         default:
             return state;
     }
