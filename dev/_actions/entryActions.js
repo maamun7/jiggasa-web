@@ -1,6 +1,6 @@
 import * as actionType from './actionTypeCons';
 import Axios from 'axios';
-import * as config from '../_config';
+import * as config from '../_helpers/config';
 
 export const createSignupUser = (data) => {
     return (dispatch) => {
@@ -9,7 +9,8 @@ export const createSignupUser = (data) => {
                 dispatch(signupSuccess(response.data))
             })
             .catch(error => {
-                throw(error);
+                signupError(error)
+               // throw(error);
             });
     };
 };
@@ -17,3 +18,4 @@ export const createSignupUser = (data) => {
 
 
 export const  signupSuccess = (response) => { return { type: actionType.SIGNUP_SUCCESS, response } };
+export const  signupError = (response) => { return { type: actionType.SIGNUP_ERROR, response } };
