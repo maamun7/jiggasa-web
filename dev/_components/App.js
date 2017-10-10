@@ -11,7 +11,7 @@ export default class App extends Component {
     render() {
         return (
             <div>
-                <Header />
+               {/* <Header />*/}
                 <div id="main-body" className="col-lg-9">
                     {this.props.children}
                 </div>

@@ -3,43 +3,40 @@ import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 
 const customStyles = {
-    overlay : {
-        position          : 'fixed',
-        top               : 0,
-        left              : 0,
-        right             : 0,
-        bottom            : 0,
-        backgroundColor   : 'rgba(255, 255, 255, 0.75)'
-    },
 
     content : {
-        position              : 'absolute',
-        top                   : '50%',
-        left                  : '50%',
-        right                 : 'auto',
-        bottom                      : 'auto',
+        top                        : '50%',
+        left                       : '50%',
+        right                      : 'auto',
+        bottom                     : 'auto',
         border                     : '1px solid #ccc',
+        transform                  : 'translate(-50%, -50%)',
         background                 : '#fff',
         overflow                   : 'auto',
         WebkitOverflowScrolling    : 'touch',
         borderRadius               : '4px',
         outline                    : 'none',
-        padding                    : '20px'
+        padding                    : '20px',
+        width                      : '30%'
 
     }
+
+
+
 };
 
 class TestModal extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
-            modalIsOpen: false
+            modalIsOpen: this.props.setFlag
         };
 
         this.openModal = this.openModal.bind(this);
         this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+
     }
 
     openModal() {
@@ -56,11 +53,11 @@ class TestModal extends React.Component {
     }
 
     render() {
+
         return (
             <div>
-                <button onClick={this.openModal}>Open Modal</button>
                 <Modal
-                    isOpen={this.state.modalIsOpen}
+                    isOpen={this.props.isOpen}
                     onAfterOpen={this.afterOpenModal}
                     onRequestClose={this.closeModal}
                     style={customStyles}
@@ -68,11 +65,46 @@ class TestModal extends React.Component {
                 >
 
                     <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-                    <button onClick={this.closeModal}>close</button>
+                    <button onClick={this.props.onHide}>close</button>
                     <div>I am a modal</div>
-                    <form>
-                        <input />
-                        <button>tab navigation</button>
+                    <form onSubmit={this.handleSubmit}>
+                        <label>
+                            Name:
+                            <input
+                                name="name"
+                                type="text"
+                                value={this.state.name}
+                                onChange={this.handleInputChange} />
+                        </label>
+                        <br />
+                        <label>
+                            Mobile:
+                            <input
+                                name="mobile"
+                                type="text"
+                                value={this.state.mobile}
+                                onChange={this.handleInputChange} />
+                        </label>
+                        <br/>
+                        <label>
+                            Email:
+                            <input
+                                name="email"
+                                type="text"
+                                value={this.state.email}
+                                onChange={this.handleInputChange} />
+                        </label>
+                        <br/>
+                        <label>
+                            Password:
+                            <input
+                                name="password"
+                                type="text"
+                                value={this.state.password}
+                                onChange={this.handleInputChange} />
+                        </label>
+                        <br/>
+                        <button type="submit">Submit</button>
                     </form>
                 </Modal>
             </div>
