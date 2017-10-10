@@ -6,7 +6,7 @@ html {
   background-size: cover;
 }
 
-#container {
+#home-modal-container {
   margin: 0px;
   padding: 0px;
 }
@@ -41,4 +41,24 @@ html {
   height: auto;
   overflow: auto;
   margin:0 auto !important;
+}
+
+@media ( min-width: 768px ) {
+  .grid-divider {
+    position: relative;
+    padding: 0;
+  }
+  .grid-divider>[class*='col-'] {
+    position: static;
+  }
+  .grid-divider>[class*='col-']:nth-child(n+2):before {
+    content: "";
+    border-left: 1px solid #DDD;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  }
+  .col-padding {
+    padding: 0 0 0 15px;
+  }
 }
