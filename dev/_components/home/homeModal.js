@@ -68,11 +68,51 @@ class HomeModal extends React.Component {
     }
 
     getNameValidationState() {
-        const len = (this.state.name).length;
-        if (len > 10) return 'success';
-        else if (len > 5) return 'warning';
-        else if (len > 0) return 'error';
+        let validatorObj = {
+            field : 'name',
+            value : this.state.name,
+            rules : {
+                required : true,
+                email : false,
+                min : 3,
+                max : 20,
+                number : false
+            },
+            message : {
+                required : '',
+                email : 'The field must be valid email',
+                min : 'The field minimum 3 character',
+                max : 'The field maximum 20 character'
+            }
+        };
+
+        let returnValid = (obj) => {
+            let fieldNmae = obj.field.charAt(0).toUpperCase() + obj.field.slice(1);
+            let  msgObj = {
+                required  : `${ fieldNmae } field is required`,
+                email     : `${ obj.field } is not valid email`,
+                min       : `${ obj.field } field minimum 3 character`,
+                max       : `${ obj.field } field maximum 20 character`,
+                number    : `${ obj.field } field must be number`
+            };
+
+            let  classObj = {
+                success : 'success',
+                warning : 'warning',
+                error   : 'error'
+            };
+
+            const len = (obj.value).length;
+            if (len > 10) return { cssClass : classObj.success, msg : ''};
+            else if (len > 5) return { cssClass : classObj.warning, msg : msgObj.min};
+            else if (len > 0) return { cssClass : classObj.error, msg : msgObj.required};
+            else return { cssClass : null, msg : '' };
+        };
+
+        return returnValid(validatorObj);
     }
+
+
 
     handleInputChange(event) {
         const target = event.target;
@@ -151,14 +191,14 @@ class HomeModal extends React.Component {
 
                                     <form onSubmit={this.handleSubmit}>
 
-                                        <FormGroup controlId="formValidationSuccess1" validationState={this.getNameValidationState()}>
+                                        <FormGroup controlId="formValidationSuccess1" validationState={ this.getNameValidationState()['cssClass'] }>
                                             <FormControl
                                                 name="name"
                                                 type="text"
                                                 value={this.state.name}
                                                 onChange={this.handleInputChange}
                                                 placeholder="Name"/>
-                                            {/*<HelpBlock>Help text with validation state.</HelpBlock>*/}
+                                            <HelpBlock> {this.getNameValidationState().msg} </HelpBlock>
                                         </FormGroup>
 
                                         <FormGroup controlId="formValidationSuccess1" validationState="success">
@@ -181,7 +221,7 @@ class HomeModal extends React.Component {
                                             {/*<HelpBlock>Help text with validation state.</HelpBlock>*/}
                                         </FormGroup>
 
-                                        <Button bsStyle="success" bsSize="lg" block type="submit"> Signup </Button>
+                                        <Button bsStyle="success" bsSize="sm" block type="submit"> Signup </Button>
                                     </form>
                                 </div>
                             </div>
@@ -198,7 +238,7 @@ class HomeModal extends React.Component {
                                             <FormControl type="text" placeholder="Password" />
                                             {/*<HelpBlock>Help text with validation state.</HelpBlock>*/}
                                         </FormGroup>
-                                        <Button bsStyle="success" bsSize="lg" block>Signin</Button>
+                                        <Button bsStyle="success" bsSize="sm" block>Signin</Button>
                                         <Button bsStyle="link">Forgot password</Button>
 
                                     </form>
