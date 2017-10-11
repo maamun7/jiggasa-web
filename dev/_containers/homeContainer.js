@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 import HomeModal from '../_components/home/homeModal';
+import { connect } from 'react-redux';
+import * as userAction from '../_actions/entryActions'
 
 class HomeContainer extends React.Component {
     constructor(props) {
@@ -15,7 +17,8 @@ class HomeContainer extends React.Component {
     }
 
     handleSubmitSignup(inputs) {
-        // console.log('On Submit--: ', inputs);
+
+        console.log("Console LOG :", inputs);
         this.props.executeSignup(inputs);
     }
 
@@ -26,8 +29,21 @@ class HomeContainer extends React.Component {
     }
 
     render() {
-        return (<HomeModal isOpen={true}> </HomeModal>);
+        return (<HomeModal isOpen={true} submitSignup={this.handleSubmitSignup} serverResponse={this.props.signUp}> </HomeModal>);
     }
 }
 
-export default HomeContainer;
+
+const mapStateToProps = (state) => {
+    return {
+        signUp: state.signUp
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        executeSignup: submitedData => dispatch(userAction.createSignupUser(submitedData))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

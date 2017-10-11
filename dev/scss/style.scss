@@ -1,5 +1,5 @@
 html {
-  background: url('../../public/assets/img/bg2.jpg') no-repeat center center fixed;
+  background: url('../../public/assets/img/bg.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -42,6 +42,15 @@ html {
   overflow: auto;
   margin:0 auto !important;
 }
+
+.success-msg {
+  color:green;
+}
+
+.error-msg {
+  color:red;
+}
+
 
 @media ( min-width: 768px ) {
   .grid-divider {

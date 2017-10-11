@@ -15,7 +15,5 @@ export const createSignupUser = (data) => {
     };
 };
 
-
-
 export const  signupSuccess = (response) => { return { type: actionType.SIGNUP_SUCCESS, response } };
 export const  signupError = (response) => { return { type: actionType.SIGNUP_ERROR, response } };
