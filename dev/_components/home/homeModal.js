@@ -74,26 +74,89 @@ class HomeModal extends React.Component {
             rules : {
                 required : true,
                 email : false,
+                password : false,
                 min : 3,
                 max : 20,
-                number : false
+                number : false,
+                alphaNum : false
             },
             message : {
-                required : '',
+                required : null,
                 email : 'The field must be valid email',
                 min : 'The field minimum 3 character',
-                max : 'The field maximum 20 character'
+                max : 'The field maximum 20 character',
+                number : 'The field maximum 20 character',
+                alphaNum : 'The field must be alpha numeric',
             }
         };
 
+        return this.validator(validatorObj);
+    }
+
+    getEmailValidationState() {
+        let validatorObj = {
+            field : 'name',
+            value : this.state.name,
+            rules : {
+                required : true,
+                email : false,
+                password : false,
+                min : 3,
+                max : 20,
+                number : false,
+                alphaNum : false
+            },
+            message : {
+                required : null,
+                email : 'The field must be valid email',
+                min : 'The field minimum 3 character',
+                max : 'The field maximum 20 character',
+                number : 'The field maximum 20 character',
+                alphaNum : 'The field must be alpha numeric',
+            }
+        };
+
+        return this.validator(validatorObj);
+    }
+
+    getPasswordValidationState() {
+        let validatorObj = {
+            field : 'password',
+            value : this.state.password,
+            rules : {
+                required : true,
+                email : false,
+                password : true,
+                min : 3,
+                max : 20,
+                number : false,
+                alphaNum : true
+            },
+            message : {
+                required : null,
+                email : 'The field must be valid email',
+                min : 'The field minimum 3 character',
+                max : 'The field maximum 20 character',
+                number : 'The field maximum 20 character',
+                alphaNum : 'The field must be alpha numeric',
+            }
+        };
+
+        return this.validator(validatorObj);
+    }
+
+    validator(obj) {
+
         let returnValid = (obj) => {
+
             let fieldNmae = obj.field.charAt(0).toUpperCase() + obj.field.slice(1);
             let  msgObj = {
                 required  : `${ fieldNmae } field is required`,
-                email     : `${ obj.field } is not valid email`,
-                min       : `${ obj.field } field minimum 3 character`,
-                max       : `${ obj.field } field maximum 20 character`,
-                number    : `${ obj.field } field must be number`
+                emailReq  : `${ fieldNmae } field required a valid email`,
+                email     : `${ fieldNmae } is not valid email`,
+                min       : `${ fieldNmae } field minimum 3 character`,
+                max       : `${ fieldNmae } field maximum 20 character`,
+                number    : `${ fieldNmae } field must be number`
             };
 
             let  classObj = {
@@ -102,14 +165,84 @@ class HomeModal extends React.Component {
                 error   : 'error'
             };
 
-            const len = (obj.value).length;
-            if (len > 10) return { cssClass : classObj.success, msg : ''};
-            else if (len > 5) return { cssClass : classObj.warning, msg : msgObj.min};
-            else if (len > 0) return { cssClass : classObj.error, msg : msgObj.required};
-            else return { cssClass : null, msg : '' };
+            if (obj.rules.email) {
+                let len = (obj.value).length;
+                console.log("Console LOG :", len);
+                if (len > 0 && len < 4) {
+                    return {
+                        cssClass : classObj.error,
+                        msg : ( obj.message.required !== null ) ? obj.message.required : msgObj.emailReq
+                    }
+                } else if (len > 3) {
+                    if (isEmail(obj.value)) {
+                        return {
+                            cssClass : classObj.success,
+                            msg : null
+                        }
+                    } else {
+                        return {
+                            cssClass : classObj.error,
+                            msg : ( obj.message.email !== null ) ? obj.message.email : msgObj.email
+                        }
+                    }
+                } else {
+                    return {
+                        cssClass : null,
+                        msg : null
+                    }
+                }
+
+                function isEmail (email) {
+                    var reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    return reg.test(email);
+                    if (reg.test(email) === false) {
+                        return false;
+                    }
+
+                    return true;
+                }
+            } else if (obj.rules.password) {
+
+                let len = (obj.value).length;
+                if (len > 0 || len <= 30) {
+                    return {
+                        cssClass : classObj.error,
+                        msg : ( obj.message.password !== null ) ? obj.message.password : msgObj.password
+                    }
+
+                } else {
+                    if (! isAlphaNum(obj.value)) {
+                        return {
+                            cssClass : classObj.password,
+                            msg : ( obj.message.password !== null ) ? obj.message.password : msgObj.password
+                        }
+                    } else {
+                        return {
+                            cssClass : classObj.success,
+                            msg : null
+                        }
+                    }
+                }
+
+                function isAlphaNum (password) {
+                    var Exp = /((^[0-9]+[a-z]+)|(^[a-z]+[0-9]+))+[0-9a-z]+$/i;
+
+                    if(!password.match(Exp))
+                        return false;
+                    else
+                        return true;
+                }
+
+            }  else {
+                const len = (obj.value).length;
+                if (len > 10) return { cssClass : classObj.success, msg : ''};
+                else if (len > 5) return { cssClass : classObj.warning, msg : msgObj.min};
+                else if (len > 0) return { cssClass : classObj.error, msg : msgObj.required};
+                else return { cssClass : null, msg : '' };
+            }
         };
 
-        return returnValid(validatorObj);
+        return returnValid(obj);
     }
 
 
@@ -201,7 +334,7 @@ class HomeModal extends React.Component {
                                             <HelpBlock> {this.getNameValidationState().msg} </HelpBlock>
                                         </FormGroup>
 
-                                        <FormGroup controlId="formValidationSuccess1" validationState="success">
+                                        <FormGroup controlId="formValidationSuccess1" validationState={ this.getEmailValidationState()['cssClass'] }>
                                            {/* <ControlLabel>Input with error</ControlLabel>*/}
                                             <FormControl
                                                 name="email"
@@ -209,16 +342,17 @@ class HomeModal extends React.Component {
                                                 value={this.state.email}
                                                 onChange={this.handleInputChange}
                                                 placeholder="Email" />
+                                            <HelpBlock> {this.getEmailValidationState().msg} </HelpBlock>
                                         </FormGroup>
 
-                                        <FormGroup controlId="formValidationSuccess1" validationState="success">
+                                        <FormGroup controlId="formValidationSuccess1" validationState={ this.getPasswordValidationState()['cssClass'] }>
                                             <FormControl
                                                 name="password"
                                                 type="text"
                                                 value={this.state.password}
                                                 onChange={this.handleInputChange}
                                                 placeholder="Password" />
-                                            {/*<HelpBlock>Help text with validation state.</HelpBlock>*/}
+                                            <HelpBlock> {this.getPasswordValidationState().msg} </HelpBlock>
                                         </FormGroup>
 
                                         <Button bsStyle="success" bsSize="sm" block type="submit"> Signup </Button>
