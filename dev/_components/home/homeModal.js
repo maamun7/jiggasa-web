@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import { Button, FormGroup, ControlLabel, FormControl, HelpBlock }
 from 'react-bootstrap';
+import Validator from 'validatorjs';
 
 const customStyles = {
     overlay : {
@@ -38,10 +39,27 @@ class HomeModal extends React.Component {
         super(props);
 
         this.state = {
-            name: '',
+            name        : '',
+            nameClass   : null,
+            nameMsg     : null,
+
             email: '',
+            emailClass   : null,
+            emailMsg     : null,
+
             password: '',
-            is_admin: 0
+            passwordClass   : null,
+            passwordMsg     : null,
+
+            is_admin: 0,
+
+            username: '',
+            usernameClass   : null,
+            usernameMsg     : null,
+
+            pass: '',
+            passClass   : null,
+            passMsg     : null
         };
 
         this.openModal = this.openModal.bind(this);
@@ -49,7 +67,7 @@ class HomeModal extends React.Component {
         this.closeModal = this.closeModal.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-      //  this.getNameValidationState = this.getNameValidationState.bind(this);
+        this.handleSubmitSignin = this.handleSubmitSignin.bind(this);
 
 
     }
@@ -68,184 +86,30 @@ class HomeModal extends React.Component {
     }
 
     getNameValidationState() {
-        let validatorObj = {
-            field : 'name',
-            value : this.state.name,
-            rules : {
-                required : true,
-                email : false,
-                password : false,
-                min : 3,
-                max : 20,
-                number : false,
-                alphaNum : false
-            },
-            message : {
-                required : null,
-                email : 'The field must be valid email',
-                min : 'The field minimum 3 character',
-                max : 'The field maximum 20 character',
-                number : 'The field maximum 20 character',
-                alphaNum : 'The field must be alpha numeric',
+        var validation = new Validator({
+            name: this.state.name
+        },
+        {
+            name: 'required|min:3|max:10'
+        });
+
+        if (validation.fails()) {
+            return {
+                cssClass : 'error',
+                msg : validation.errors.first('name')
             }
-        };
-
-        return this.validator(validatorObj);
-    }
-
-    getEmailValidationState() {
-        let validatorObj = {
-            field : 'name',
-            value : this.state.name,
-            rules : {
-                required : true,
-                email : false,
-                password : false,
-                min : 3,
-                max : 20,
-                number : false,
-                alphaNum : false
-            },
-            message : {
-                required : null,
-                email : 'The field must be valid email',
-                min : 'The field minimum 3 character',
-                max : 'The field maximum 20 character',
-                number : 'The field maximum 20 character',
-                alphaNum : 'The field must be alpha numeric',
+        } else if (validation.passes()) {
+            return {
+                cssClass : 'success',
+                msg : null
             }
-        };
-
-        return this.validator(validatorObj);
-    }
-
-    getPasswordValidationState() {
-        let validatorObj = {
-            field : 'password',
-            value : this.state.password,
-            rules : {
-                required : true,
-                email : false,
-                password : true,
-                min : 3,
-                max : 20,
-                number : false,
-                alphaNum : true
-            },
-            message : {
-                required : null,
-                email : 'The field must be valid email',
-                min : 'The field minimum 3 character',
-                max : 'The field maximum 20 character',
-                number : 'The field maximum 20 character',
-                alphaNum : 'The field must be alpha numeric',
+        } else {
+            return {
+                cssClass : null,
+                msg : null
             }
-        };
-
-        return this.validator(validatorObj);
+        }
     }
-
-    validator(obj) {
-
-        let returnValid = (obj) => {
-
-            let fieldNmae = obj.field.charAt(0).toUpperCase() + obj.field.slice(1);
-            let  msgObj = {
-                required  : `${ fieldNmae } field is required`,
-                emailReq  : `${ fieldNmae } field required a valid email`,
-                email     : `${ fieldNmae } is not valid email`,
-                min       : `${ fieldNmae } field minimum 3 character`,
-                max       : `${ fieldNmae } field maximum 20 character`,
-                number    : `${ fieldNmae } field must be number`
-            };
-
-            let  classObj = {
-                success : 'success',
-                warning : 'warning',
-                error   : 'error'
-            };
-
-            if (obj.rules.email) {
-                let len = (obj.value).length;
-                console.log("Console LOG :", len);
-                if (len > 0 && len < 4) {
-                    return {
-                        cssClass : classObj.error,
-                        msg : ( obj.message.required !== null ) ? obj.message.required : msgObj.emailReq
-                    }
-                } else if (len > 3) {
-                    if (isEmail(obj.value)) {
-                        return {
-                            cssClass : classObj.success,
-                            msg : null
-                        }
-                    } else {
-                        return {
-                            cssClass : classObj.error,
-                            msg : ( obj.message.email !== null ) ? obj.message.email : msgObj.email
-                        }
-                    }
-                } else {
-                    return {
-                        cssClass : null,
-                        msg : null
-                    }
-                }
-
-                function isEmail (email) {
-                    var reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                    return reg.test(email);
-                    if (reg.test(email) === false) {
-                        return false;
-                    }
-
-                    return true;
-                }
-            } else if (obj.rules.password) {
-
-                let len = (obj.value).length;
-                if (len > 0 || len <= 30) {
-                    return {
-                        cssClass : classObj.error,
-                        msg : ( obj.message.password !== null ) ? obj.message.password : msgObj.password
-                    }
-
-                } else {
-                    if (! isAlphaNum(obj.value)) {
-                        return {
-                            cssClass : classObj.password,
-                            msg : ( obj.message.password !== null ) ? obj.message.password : msgObj.password
-                        }
-                    } else {
-                        return {
-                            cssClass : classObj.success,
-                            msg : null
-                        }
-                    }
-                }
-
-                function isAlphaNum (password) {
-                    var Exp = /((^[0-9]+[a-z]+)|(^[a-z]+[0-9]+))+[0-9a-z]+$/i;
-
-                    if(!password.match(Exp))
-                        return false;
-                    else
-                        return true;
-                }
-
-            }  else {
-                const len = (obj.value).length;
-                if (len > 10) return { cssClass : classObj.success, msg : ''};
-                else if (len > 5) return { cssClass : classObj.warning, msg : msgObj.min};
-                else if (len > 0) return { cssClass : classObj.error, msg : msgObj.required};
-                else return { cssClass : null, msg : '' };
-            }
-        };
-
-        return returnValid(obj);
-    }
-
-
 
     handleInputChange(event) {
         const target = event.target;
@@ -254,17 +118,68 @@ class HomeModal extends React.Component {
             this.setState({
                 name: target.value
             });
+            this.singleValidation('name', target.value, 'required|min:3|max:50');
         }
 
         if (target.name === 'email') {
             this.setState({
                 email: target.value
             });
+            this.singleValidation('email', target.value, 'required|email');
         }
 
         if (target.name === 'password') {
             this.setState({
                 password: target.value
+            });
+            this.singleValidation('password', target.value, 'required|min:6|alpha_num|max:100');
+        }
+
+        /// For signin
+
+        if (target.name === 'username') {
+            this.setState({
+                username: target.value
+            });
+            this.singleValidation('username', target.value, 'required|email');
+        }
+
+        if (target.name === 'pass') {
+            this.setState({
+                pass: target.value
+            });
+            this.singleValidation('pass', target.value, 'required|min:6|alpha_num|max:100');
+        }
+    }
+
+    singleValidation(stateName, value, rulesStr) {
+        var validation = new Validator({
+                [stateName] : value
+            },
+            {
+                [stateName]: rulesStr
+            },{
+                "required.username": "Email field is required !",
+                "email.username": "Email field must be valid email !",
+                "required.pass": "Password field is required !",
+                "min.pass": "Password minimum 6 characters !",
+                "max.pass": "Password maximum 100 characters !"
+            });
+
+        if (validation.fails()) {
+            this.setState({
+                [stateName + 'Class'] : 'error',
+                [stateName + 'Msg'] : validation.errors.first(stateName)
+            });
+        } else if (validation.passes()) {
+            this.setState({
+                [stateName + 'Class'] : 'success',
+                [stateName + 'Msg'] : null
+            });
+        } else {
+            this.setState({
+                [stateName + 'Class'] : null,
+                [stateName + 'Msg'] : null
             });
         }
     }
@@ -272,15 +187,90 @@ class HomeModal extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        let inputs = {
-            name : this.state.name,
-            email : this.state.email,
-            password : this.state.password
-        };
+        let validation = new Validator({
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password,
+        }, {
+            name: 'required|min:3|max:50',
+            email: 'required|email',
+            password: 'required|min:6|alpha_num|max:100',
+        });
 
-        console.log("Submit signup modal:", inputs);
+        if (validation.fails()) {
+            if (validation.errors.first('name')) {
+                this.setState({
+                    'nameClass' : 'error',
+                    'nameMsg' : validation.errors.first('name')
+                });
+            }
 
-        this.props.submitSignup(inputs);
+            if (validation.errors.first('email')) {
+                this.setState({
+                    'emailClass' : 'error',
+                    'emailMsg' : validation.errors.first('email')
+                });
+            }
+
+            if (validation.errors.first('password')) {
+                this.setState({
+                    'passwordClass' : 'error',
+                    'passwordMsg' : validation.errors.first('password')
+                });
+            }
+        }
+        else {
+            let inputs = {
+                name : this.state.name,
+                email : this.state.email,
+                password : this.state.password,
+                is_admin : this.state.is_admin
+            };
+            this.props.submitSignup(inputs);
+        }
+    }
+
+    handleSubmitSignin(e) {
+        e.preventDefault();
+
+        let validation = new Validator({
+            username: this.state.username,
+            pass: this.state.pass
+        }, {
+            username: 'required|email',
+            pass: 'required|min:6|alpha_num|max:100'
+        },{
+            "required.username": "Email field is required !",
+            "email.username": "Email field must be valid email !",
+            "required.pass": "Password field is required !",
+            "min.pass": "Password minimum 6 characters !",
+            "max.pass": "Password maximum 100 characters !"
+        });
+
+        if (validation.fails()) {
+
+
+            if (validation.errors.first('username')) {
+                this.setState({
+                    'usernameClass' : 'error',
+                    'usernameMsg' : validation.errors.first('username')
+                });
+            }
+
+            if (validation.errors.first('pass')) {
+                this.setState({
+                    'passClass' : 'error',
+                    'passMsg' : validation.errors.first('pass')
+                });
+            }
+        }
+        else {
+            let inputs = {
+                email : this.state.username,
+                password : this.state.pass
+            };
+            this.props.submitSignin(inputs);
+        }
     }
 
     render() {
@@ -294,8 +284,9 @@ class HomeModal extends React.Component {
             } else {
                 classType = 'error-msg';
             }
-        }
 
+            console.log("DEBUGG :", serverResponse);
+        }
 
         return (
             <div>
@@ -324,17 +315,18 @@ class HomeModal extends React.Component {
 
                                     <form onSubmit={this.handleSubmit}>
 
-                                        <FormGroup controlId="formValidationSuccess1" validationState={ this.getNameValidationState()['cssClass'] }>
+                                        <FormGroup controlId="formValidationSuccess1" validationState={ this.state.nameClass }>
                                             <FormControl
                                                 name="name"
                                                 type="text"
                                                 value={this.state.name}
                                                 onChange={this.handleInputChange}
                                                 placeholder="Name"/>
-                                            <HelpBlock> {this.getNameValidationState().msg} </HelpBlock>
+                                            <FormControl.Feedback />
+                                            <HelpBlock> {this.state.nameMsg} </HelpBlock>
                                         </FormGroup>
 
-                                        <FormGroup controlId="formValidationSuccess1" validationState={ this.getEmailValidationState()['cssClass'] }>
+                                        <FormGroup controlId="formValidationSuccess1" validationState={ this.state.emailClass }>
                                            {/* <ControlLabel>Input with error</ControlLabel>*/}
                                             <FormControl
                                                 name="email"
@@ -342,17 +334,20 @@ class HomeModal extends React.Component {
                                                 value={this.state.email}
                                                 onChange={this.handleInputChange}
                                                 placeholder="Email" />
-                                            <HelpBlock> {this.getEmailValidationState().msg} </HelpBlock>
+                                            <FormControl.Feedback />
+                                            <HelpBlock> {this.state.emailMsg} </HelpBlock>
+
                                         </FormGroup>
 
-                                        <FormGroup controlId="formValidationSuccess1" validationState={ this.getPasswordValidationState()['cssClass'] }>
+                                        <FormGroup controlId="formValidationSuccess1" validationState={ this.state.passwordClass }>
                                             <FormControl
                                                 name="password"
                                                 type="text"
                                                 value={this.state.password}
                                                 onChange={this.handleInputChange}
                                                 placeholder="Password" />
-                                            <HelpBlock> {this.getPasswordValidationState().msg} </HelpBlock>
+                                            <FormControl.Feedback />
+                                            <HelpBlock> {this.state.passwordMsg} </HelpBlock>
                                         </FormGroup>
 
                                         <Button bsStyle="success" bsSize="sm" block type="submit"> Signup </Button>
@@ -361,20 +356,33 @@ class HomeModal extends React.Component {
                             </div>
                             <div className="col-sm-6">
                                 <div className="col-padding">
-                                    <form>
-                                         <ControlLabel> Signin </ControlLabel>
-                                        <FormGroup controlId="formValidationSuccess1" validationState="success">
+                                    <form onSubmit={this.handleSubmitSignin}>
+
+                                        <FormGroup controlId="formValidationSuccess1" validationState={ this.state.usernameClass }>
                                             {/* <ControlLabel>Input with error</ControlLabel>*/}
-                                            <FormControl type="text" placeholder="Email"  />
+                                            <FormControl
+                                                name="username"
+                                                type="text"
+                                                value={this.state.username}
+                                                onChange={this.handleInputChange}
+                                                placeholder="Email" />
+                                            <FormControl.Feedback />
+                                            <HelpBlock> {this.state.usernameMsg} </HelpBlock>
+
                                         </FormGroup>
 
-                                        <FormGroup controlId="formValidationSuccess1" validationState="success">
-                                            <FormControl type="text" placeholder="Password" />
-                                            {/*<HelpBlock>Help text with validation state.</HelpBlock>*/}
+                                        <FormGroup controlId="formValidationSuccess1" validationState={ this.state.passClass }>
+                                            <FormControl
+                                                name="pass"
+                                                type="text"
+                                                value={this.state.pass}
+                                                onChange={this.handleInputChange}
+                                                placeholder="Password" />
+                                            <FormControl.Feedback />
+                                            <HelpBlock> {this.state.passMsg} </HelpBlock>
                                         </FormGroup>
-                                        <Button bsStyle="success" bsSize="sm" block>Signin</Button>
-                                        <Button bsStyle="link">Forgot password</Button>
 
+                                        <Button bsStyle="success" bsSize="sm" block type="submit"> Signin </Button>
                                     </form>
                                 </div>
                             </div>

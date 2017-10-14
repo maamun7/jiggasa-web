@@ -14,12 +14,15 @@ class HomeContainer extends React.Component {
 
         this.handleSubmitSignup = this.handleSubmitSignup.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.handleSubmitSignin = this.handleSubmitSignin.bind(this);
     }
 
     handleSubmitSignup(inputs) {
-
-        console.log("Console LOG :", inputs);
         this.props.executeSignup(inputs);
+    }
+
+    handleSubmitSignin(inputs) {
+        this.props.executeSignin(inputs);
     }
 
     handleClick(event) {
@@ -29,20 +32,30 @@ class HomeContainer extends React.Component {
     }
 
     render() {
-        return (<HomeModal isOpen={true} submitSignup={this.handleSubmitSignup} serverResponse={this.props.signUp}> </HomeModal>);
+        return (<HomeModal
+            isOpen={true}
+            submitSignup={this.handleSubmitSignup}
+            serverResponse={this.props.signUp}
+            submitSignin={this.handleSubmitSignin}
+            serverRespSignin={this.props.signIn}>
+        </HomeModal>);
     }
 }
 
 
 const mapStateToProps = (state) => {
+
+    console.log("Signin response :", state.signIn);
     return {
-        signUp: state.signUp
+        signUp: state.signUp,
+        signIn: state.signIn,
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        executeSignup: submitedData => dispatch(userAction.createSignupUser(submitedData))
+        executeSignup: submitedData => dispatch(userAction.createSignupUser(submitedData)),
+        executeSignin: submitedObj => dispatch(userAction.makeSigninUser(submitedObj))
     }
 };
 

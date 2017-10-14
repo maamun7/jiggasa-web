@@ -3,9 +3,17 @@ export const signupReducer = (state = null, action) => {
         case 'SIGNUP_SUCCESS':
             return {...state, res : action.response}
         case 'SIGNUP_ERROR':
+            return {...state, res : action.response}
+        default:
+            return state;
+    }
+};
 
-            console.log("ERROR :", action.response);
-            
+export const signinReducer = (state = null, action) => {
+    switch (action.type) {
+        case 'SIGNIN_SUCCESS':
+            return {...state, res : action.response}
+        case 'SIGNIN_ERROR':
             return {...state, res : action.response}
         default:
             return state;

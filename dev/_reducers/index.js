@@ -1,7 +1,8 @@
 // Set up your root reducer here...
 import { combineReducers } from 'redux';
-import { signupReducer } from './signinSignup'
+import { signupReducer, signinReducer } from './signinSignup'
 
 export default combineReducers({
-    signUp: signupReducer
+    signUp: signupReducer,
+    signIn: signinReducer
 });
