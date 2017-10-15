@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import HomeModal from '../_components/home/homeModal';
 import { connect } from 'react-redux';
-import * as userAction from '../_actions/entryActions'
+import * as userAction from '../_actions/entryActions';
+import {getAuthInfo} from '../_helpers/helper';
 
 class HomeContainer extends React.Component {
     constructor(props) {
@@ -45,7 +46,7 @@ class HomeContainer extends React.Component {
 
 const mapStateToProps = (state) => {
 
-    console.log("Signin response :", state.signIn);
+    console.log("From local storage :", getAuthInfo().token);
     return {
         signUp: state.signUp,
         signIn: state.signIn,
