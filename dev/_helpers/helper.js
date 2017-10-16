@@ -1,8 +1,26 @@
+import Axios from 'axios';
+import * as config from '../_helpers/config';
 
 export const saveAuthInfo = (authInfo) => {
     localStorage.setItem('auth', JSON.stringify(authInfo));
 };
 
 export const getAuthInfo = () => {
-     return localStorage.getItem('auth');
+     return JSON.parse(localStorage.getItem('auth'));
+};
+
+export const verifyAuthToken = () => {
+     let auth = getAuthInfo();
+     if (auth != null) {
+         Axios.get(config.BASE_URL+"/authenticate", { headers: { 'Authorization' : auth.token } })
+             .catch(error => {
+                 if (error.response.status == 401) {
+                    //Set null authInfo
+                     localStorage.removeItem('auth');
+                     return true;
+                 }
+             });
+     }
+
+     return false;
 };

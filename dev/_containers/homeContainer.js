@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import HomeModal from '../_components/home/homeModal';
 import { connect } from 'react-redux';
 import * as userAction from '../_actions/entryActions';
-import {getAuthInfo} from '../_helpers/helper';
 
 class HomeContainer extends React.Component {
     constructor(props) {
@@ -16,6 +15,13 @@ class HomeContainer extends React.Component {
         this.handleSubmitSignup = this.handleSubmitSignup.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleSubmitSignin = this.handleSubmitSignin.bind(this);
+
+        if (verifyAuthToken()) {
+            this.state = {
+                showModal: true
+            };
+        }
+
     }
 
     handleSubmitSignup(inputs) {
@@ -34,7 +40,7 @@ class HomeContainer extends React.Component {
 
     render() {
         return (<HomeModal
-            isOpen={true}
+            isOpen={this.state.showModal}
             submitSignup={this.handleSubmitSignup}
             serverResponse={this.props.signUp}
             submitSignin={this.handleSubmitSignin}
@@ -45,11 +51,9 @@ class HomeContainer extends React.Component {
 
 
 const mapStateToProps = (state) => {
-
-    console.log("From local storage :", getAuthInfo().token);
     return {
         signUp: state.signUp,
-        signIn: state.signIn,
+        signIn: state.signIn
     }
 };
 
