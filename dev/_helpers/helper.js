@@ -10,17 +10,21 @@ export const getAuthInfo = () => {
 };
 
 export const verifyAuthToken = () => {
+     let status = false;
      let auth = getAuthInfo();
      if (auth != null) {
          Axios.get(config.BASE_URL+"/authenticate", { headers: { 'Authorization' : auth.token } })
+             .then(response => {
+                 status = true;
+             })
              .catch(error => {
                  if (error.response.status == 401) {
-                    //Set null authInfo
+                    //Set null authInfo if verify token is not valid
                      localStorage.removeItem('auth');
-                     return true;
+                     status = false;
                  }
              });
      }
 
-     return false;
+     return status;
 };

@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import HomeModal from '../_components/home/homeModal';
 import { connect } from 'react-redux';
 import * as userAction from '../_actions/entryActions';
+import { verifyAuthToken } from '../_helpers/helper';
 
 class HomeContainer extends React.Component {
     constructor(props) {
@@ -16,7 +17,9 @@ class HomeContainer extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleSubmitSignin = this.handleSubmitSignin.bind(this);
 
-        if (verifyAuthToken()) {
+        console.log("false/true :", verifyAuthToken());
+
+        if (! verifyAuthToken()) {
             this.state = {
                 showModal: true
             };
@@ -51,6 +54,7 @@ class HomeContainer extends React.Component {
 
 
 const mapStateToProps = (state) => {
+    console.log("Signin response :", state.signIn);
     return {
         signUp: state.signUp,
         signIn: state.signIn
