@@ -1,9 +1,26 @@
-import React  from 'react';
-import { Navbar, Nav, NavItem, Glyphicon } from 'react-bootstrap';
+import React, { Component} from 'react';
+import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
+import { verifyAuthToken, getAuthInfo } from '../../_helpers/helper';
 
 class Header extends React.Component {
+
     render() {
+        let menu = null;
+        let authInfo = getAuthInfo();
+        if (authInfo != null) {
+            menu = <Navbar>
+                <Nav>
+                    <NavDropdown eventKey={3} title={authInfo.name} id="basic-nav-dropdown">
+                        <MenuItem eventKey={3.1}>Action</MenuItem>
+                        <MenuItem eventKey={3.2}> Logout </MenuItem>
+                    </NavDropdown>
+                </Nav>
+            </Navbar>;
+
+        }
         return (
+
+            <div>
             <div id="top-bar" className="full-width">
                 <div className="col-lg-9 header-width">
                     <div className="logo">
@@ -11,37 +28,10 @@ class Header extends React.Component {
                     </div>
                 </div>
             </div>
+                { menu }
+            </div>
 
-            /*<Navbar fixedTop>
-                <Navbar.Header>
-                    <Navbar.Brand>
-                        <a href="/">
-                            Our Awesome Store
-                        </a>
-                    </Navbar.Brand>
-                    <Navbar.Toggle />
-                </Navbar.Header>
-                <Navbar.Collapse>
-                    <Nav pullRight>
-                        <NavItem
-                            eventKey={1}
-                            href="/signin">
-                            Signin
-                        </NavItem>
-                        <NavItem
-                            eventKey={2}
-                            href="signup">
-                            Signup
-                        </NavItem>
-                        <NavItem
-                            eventKey={3}
-                            href="#">
-                            <Glyphicon glyph="shopping-cart" />
-                            {' Cart'}
-                        </NavItem>
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>*/
+
         );
     }
 }

@@ -8,7 +8,7 @@ export default class App extends Component {
     constructor(props){
         super(props);
        // localStorage.removeItem('auth');
-        console.log("DEBUGGgggg :", verifyAuthToken());
+        console.log("Token all :", getAuthInfo());
     }
 
     render() {

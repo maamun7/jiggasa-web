@@ -3,28 +3,26 @@ import { Link } from 'react-router';
 import HomeModal from '../_components/home/homeModal';
 import { connect } from 'react-redux';
 import * as userAction from '../_actions/entryActions';
-import { verifyAuthToken } from '../_helpers/helper';
+import { verifyAuthToken, getAuthInfo } from '../_helpers/helper';
 
 class HomeContainer extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            showModal: false
+            showModal: true
         };
 
         this.handleSubmitSignup = this.handleSubmitSignup.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleSubmitSignin = this.handleSubmitSignin.bind(this);
 
-        console.log("false/true :", verifyAuthToken());
 
-        if (! verifyAuthToken()) {
+        if (verifyAuthToken()) {
             this.state = {
-                showModal: true
+                showModal: false
             };
         }
-
     }
 
     handleSubmitSignup(inputs) {
@@ -42,6 +40,8 @@ class HomeContainer extends React.Component {
     }
 
     render() {
+
+        console.log("Show modal status :", this.state.showModal);
         return (<HomeModal
             isOpen={this.state.showModal}
             submitSignup={this.handleSubmitSignup}

@@ -9,22 +9,21 @@ export const getAuthInfo = () => {
      return JSON.parse(localStorage.getItem('auth'));
 };
 
-export const verifyAuthToken = () => {
-     let status = false;
+export const verifyAuthToken = () => {return true;
      let auth = getAuthInfo();
      if (auth != null) {
-         Axios.get(config.BASE_URL+"/authenticate", { headers: { 'Authorization' : auth.token } })
+         return Axios.get(config.BASE_URL+"/authenticate", { headers: { 'Authorization' : auth.token } })
              .then(response => {
-                 status = true;
+                 return true;
              })
              .catch(error => {
                  if (error.response.status == 401) {
                     //Set null authInfo if verify token is not valid
                      localStorage.removeItem('auth');
-                     status = false;
+                     return false;
                  }
              });
      }
 
-     return status;
+     return false;
 };
