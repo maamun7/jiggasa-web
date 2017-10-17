@@ -9,7 +9,7 @@ export const getAuthInfo = () => {
      return JSON.parse(localStorage.getItem('auth'));
 };
 
-export const verifyAuthToken = () => {return true;
+export const verifyAuthToken = () => {
      let auth = getAuthInfo();
      if (auth != null) {
          return Axios.get(config.BASE_URL+"/authenticate", { headers: { 'Authorization' : auth.token } })
@@ -26,4 +26,11 @@ export const verifyAuthToken = () => {return true;
      }
 
      return false;
+};
+
+export const doEmptyAuthSession = () => {
+    if (getAuthInfo() != null) {
+        localStorage.removeItem('auth');
+    }
+    return true;
 };

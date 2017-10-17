@@ -7,7 +7,6 @@ import { verifyAuthToken, getAuthInfo } from '../_helpers/helper';
 export default class App extends Component {
     constructor(props){
         super(props);
-       // localStorage.removeItem('auth');
         console.log("Token all :", getAuthInfo());
     }
 
