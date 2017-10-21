@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import * as config from '../_helpers/config';
+import * as config from './/config';
 
 export const saveAuthInfo = (authInfo) => {
     localStorage.setItem('auth', JSON.stringify(authInfo));

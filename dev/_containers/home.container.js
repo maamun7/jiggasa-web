@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import HomeModal from '../_components/home/homeModal';
 import { connect } from 'react-redux';
-import * as userAction from '../_actions/entryActions';
-import { verifyAuthToken, getAuthInfo } from '../_helpers/helper';
+import * as userAction from '../_actions/user.actions';
+import { verifyAuthToken, getAuthInfo } from '../_utils/helper';
 
 class HomeContainer extends React.Component {
     constructor(props) {
@@ -63,8 +63,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        executeSignup: submitedData => dispatch(userAction.createSignupUser(submitedData)),
-        executeSignin: submitedObj => dispatch(userAction.makeSigninUser(submitedObj))
+        executeSignup: submitedData => dispatch(userAction.register(submitedData)),
+        executeSignin: submitedObj => dispatch(userAction.login(submitedObj))
     }
 };
 

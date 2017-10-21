@@ -1,7 +1,7 @@
 import React, {Component}   from 'react';
 import Header from './header/header';
 import Footer from './footer/footer';
-import { verifyAuthToken, getAuthInfo } from '../_helpers/helper';
+import { verifyAuthToken, getAuthInfo } from '../_utils/helper';
 
 
 export default class App extends Component {

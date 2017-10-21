@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import SignupForm from '../../_components/form/signupForm';
-import * as userAction from '../../_actions/entryActions'
+import * as userAction from '../../_actions/user.actions'
 
 class signupContainer extends React.Component {
     constructor(props) {
@@ -50,7 +50,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        executeSignup: submitedData => dispatch(userAction.createSignupUser(submitedData))
+        executeSignup: submitedData => dispatch(userAction.register(submitedData))
     }
 };
 

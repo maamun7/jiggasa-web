@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import { Navbar, Nav, NavItem, MenuItem, NavDropdown, ButtonToolbar, DropdownButton }
 from 'react-bootstrap';
-import { verifyAuthToken, getAuthInfo, doEmptyAuthSession } from '../../_helpers/helper';
+import { verifyAuthToken, getAuthInfo, doEmptyAuthSession } from '../../_utils/helper';
 
 class Header extends React.Component {
     constructor(props) {
