@@ -1,5 +1,6 @@
 import 'babel-polyfill';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { render } from 'react-dom';
 /*import { BrowserRouter as Router, browserHistory} from 'react-router-dom'*/
@@ -9,9 +10,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './scss/style.scss';
 import { store } from './_helpers';
 import App  from './_components/App';
-
-render(
+import RootContainer from './_containers/RootContainer'
+/*render(
     <Provider store={store}>
         <App/>
     </Provider>,
-    document.getElementById('app'));
+    document.getElementById('app'));*/
+
+
+ReactDOM.render(
+    <Provider store={ store }>
+        <RootContainer />
+    </Provider>,
+    document.getElementById('app')
+);
