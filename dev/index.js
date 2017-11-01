@@ -8,7 +8,7 @@ import { render } from 'react-dom';
 /*import configureStore from './_store/confStore'*/
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './scss/style.scss';
-import { store } from './_helpers';
+import  configureStore from './_store/confStore';
 import App  from './_components/App';
 import RootContainer from './_containers/RootContainer'
 /*render(
@@ -19,7 +19,7 @@ import RootContainer from './_containers/RootContainer'
 
 
 ReactDOM.render(
-    <Provider store={ store }>
+    <Provider store={ configureStore() }>
         <RootContainer />
     </Provider>,
     document.getElementById('app')

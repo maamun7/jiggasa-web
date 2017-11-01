@@ -3,32 +3,38 @@ import { connect } from 'react-redux';
 
 import Root from '../_components/Root';
 
-import { routerCons } from '../_constants/index';
+import { routerCons } from '../_constants';
+import HomeContainer from '../_containers/HomeContainer';
+import LoginContainer from '../_containers/LoginContainer';
 
 const RootContainer = props => <Root {...props} />;
+
 
 const mapStateToProps = (state) => {
   const { router } = state;
 
+    console.log("State : ",state );
+
   return {
-    paths: [
-        routerCons.INDEX_PATH,
-        routerCons.LOGIN,
-        routerCons.REGISTER
-    ],
-    router,
-    routes: {
-      [routerCons.INDEX_PATH]: '',
-      [routerCons.LOGIN]: '',
-      [routerCons.REGISTER]: ''
-    }
+        paths: [
+            routerCons.INDEX_PATH,
+            routerCons.LOGIN,
+            routerCons.REGISTER
+        ],
+        router,
+        routes: {
+          [routerCons.INDEX_PATH]: HomeContainer,
+          [routerCons.LOGIN]: LoginContainer,
+          [routerCons.REGISTER]: ''
+        }
+    };
 };
-};
+
 
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        oman : ''
+        //dispatch({type: CHANGE_ROUTE, router: router})
     }
 };
 

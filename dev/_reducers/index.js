@@ -1,8 +1,26 @@
 // Set up your root reducer here...
 import { combineReducers } from 'redux';
-import { signupReducer, signinReducer } from './authentication.reducers'
+import { signupReducer, signinReducer } from './Authentication';
+import { router } from './Router';
+
+
+console.log("Reducer index : ", router);
+
+
 
 export default combineReducers({
-   /* signUp: signupReducer,*/
-    signIn: signinReducer
+    /*signUp: signupReducer,
+    signIn: signinReducer,*/
+    router
 });
+
+
+/*const navigateBack = function (e) {
+  return function (dispatch) {
+    const { state } = e;
+    if (state) {
+      const { route } = state;
+      return dispatch(navigateTo(route, false));
+    }
+  };
+};*/

@@ -1,9 +1,10 @@
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-
+import Router from '../_components/Router'
+/*
 const propTypes = {
 
-};
+};*/
 
 class Root extends Component {
   componentWillMount() {
@@ -12,9 +13,13 @@ class Root extends Component {
 
   render() {
     const { router, routes } = this.props;
+
+
+      console.log("Root props : ", this.props);
     return (
       <div>
-        <h1> Amar sonar Bangla </h1>
+        <Router router={router} routes={routes} />
+        <h1> ## </h1>
       </div>
     );
   }
