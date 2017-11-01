@@ -13,9 +13,6 @@ class Root extends Component {
 
   render() {
     const { router, routes } = this.props;
-
-
-      console.log("Root props : ", this.props);
     return (
       <div>
         <Router router={router} routes={routes} />

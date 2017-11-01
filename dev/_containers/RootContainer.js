@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Root from '../_components/Root';
 
 import { routerCons } from '../_constants';
+import { initRouter } from '../_actions/RouterActions';
 import HomeContainer from '../_containers/HomeContainer';
 import LoginContainer from '../_containers/LoginContainer';
 
@@ -12,8 +13,6 @@ const RootContainer = props => <Root {...props} />;
 
 const mapStateToProps = (state) => {
   const { router } = state;
-
-    console.log("State : ",state );
 
   return {
         paths: [
@@ -31,11 +30,16 @@ const mapStateToProps = (state) => {
 };
 
 
-
 const mapDispatchToProps = (dispatch) => {
     return {
-        //dispatch({type: CHANGE_ROUTE, router: router})
+        executeSignup : () => dispatch({type: 'CHANGE_ROUTE', route:'/'})
     }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RootContainer);
+
+
+/*
+export default connect(mapStateToProps, {
+    initRouter,
+})(RootContainer);*/

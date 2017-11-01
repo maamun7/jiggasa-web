@@ -6,7 +6,7 @@ const initialState = {
 
 const router = (state = initialState, action) => {
 
-    console.log("Console Baaaaaa : ", state);
+    console.log("Console Baaaaaal : ", action);
 
   switch (action.type) {
     case actionTypes.CHANGE_ROUTE:

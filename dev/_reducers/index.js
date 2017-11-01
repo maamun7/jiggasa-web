@@ -3,11 +3,6 @@ import { combineReducers } from 'redux';
 import { signupReducer, signinReducer } from './Authentication';
 import { router } from './Router';
 
-
-console.log("Reducer index : ", router);
-
-
-
 export default combineReducers({
     /*signUp: signupReducer,
     signIn: signinReducer,*/

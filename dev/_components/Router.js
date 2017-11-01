@@ -11,10 +11,6 @@ import React from 'react';
 };*/
 
 const Router = ({ router, routes }) => {
-
-    console.log("In component router : ", router);
-    console.log("In component routes : ", routes);
-
   const { path } = router.route;
   if (path in routes) {
     const Component = routes[path];
