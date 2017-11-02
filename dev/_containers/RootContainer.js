@@ -10,10 +10,8 @@ import LoginContainer from '../_containers/LoginContainer';
 
 const RootContainer = props => <Root {...props} />;
 
-
 const mapStateToProps = (state) => {
   const { router } = state;
-
   return {
         paths: [
             routerCons.INDEX_PATH,
@@ -29,17 +27,6 @@ const mapStateToProps = (state) => {
     };
 };
 
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        executeSignup : () => dispatch({type: 'CHANGE_ROUTE', route:'/'})
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(RootContainer);
-
-
-/*
 export default connect(mapStateToProps, {
     initRouter,
-})(RootContainer);*/
+})(RootContainer);
