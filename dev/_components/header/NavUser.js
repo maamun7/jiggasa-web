@@ -1,4 +1,5 @@
 import React, { Component} from 'react';
+import LoginModal from '../../_components/form/LoginModal'
 
 const NavUser = ({ isAuthenticated, authenticatedInfo }) => {
     if (isAuthenticated) {
