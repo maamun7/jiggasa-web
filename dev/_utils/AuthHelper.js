@@ -9,7 +9,16 @@ export const getAuthInfo = () => {
      return JSON.parse(localStorage.getItem('auth'));
 };
 
-export const verifyAuthToken = () => {
+export const getAuthenticatedInfo = (state) => {
+     let auth = getAuthInfo();
+     if (auth !== null) {
+        return auth;
+     } else {
+         return null;
+     }
+};
+
+export const getIsAuthenticated = state => {
      let auth = getAuthInfo();
      if (auth != null) {
          return Axios.get(config.BASE_URL+"/authenticate", { headers: { 'Authorization' : auth.token } })
@@ -28,7 +37,7 @@ export const verifyAuthToken = () => {
      return false;
 };
 
-export const doEmptyAuthSession = () => {
+export const doEmptyAuthSession = (state) => {
     if (getAuthInfo() != null) {
         localStorage.removeItem('auth');
     }

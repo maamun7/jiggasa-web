@@ -9,7 +9,6 @@ import { render } from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './scss/style.scss';
 import  configureStore from './_store/confStore';
-import App  from './_components/App';
 import RootContainer from './_containers/RootContainer'
 /*render(
     <Provider store={store}>

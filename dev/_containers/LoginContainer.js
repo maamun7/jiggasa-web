@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import HomeModal from '../_components/home/homeModal';
 import { connect } from 'react-redux';
 import * as userAction from '../_actions/user.actions';
-import { verifyAuthToken, getAuthInfo } from '../_utils/helper';
+import { getIsAuthenticated, getAuthInfo } from '../_utils/AuthHelper';
 
 class LoginContainer extends React.Component {
     constructor(props) {
@@ -18,7 +18,7 @@ class LoginContainer extends React.Component {
         this.handleSubmitSignin = this.handleSubmitSignin.bind(this);
 
 
-        if (verifyAuthToken()) {
+        if (getIsAuthenticated()) {
             this.state = {
                 showModal: false
             };

@@ -1,12 +1,13 @@
 import React, { Component} from 'react';
 import { Navbar, Nav, NavItem, MenuItem, NavDropdown, ButtonToolbar, DropdownButton }
 from 'react-bootstrap';
-import { verifyAuthToken, getAuthInfo, doEmptyAuthSession } from '../../_utils/helper';
+import { verifyAuthToken, getAuthInfo, doEmptyAuthSession } from '../../_utils/AuthHelper';
 import NavSearch from './NavSearch';
 import NavUser from './NavUser';
 
 const Header = ({
-
+                    isAuthenticated,
+                    authenticatedInfo,
                 }) => (
     <div id="top-bar" className="full-width">
         <div className="col-lg-9 header-width">
@@ -17,7 +18,10 @@ const Header = ({
                 <NavSearch/>
             </div>
             <div className="col-lg-3">
-                <NavUser/>
+                <NavUser
+                    isAuthenticated={isAuthenticated}
+                    authenticatedInfo={authenticatedInfo}
+                />
             </div>
         </div>
     </div>

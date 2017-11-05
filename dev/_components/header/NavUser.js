@@ -1,15 +1,17 @@
 import React, { Component} from 'react';
 
-class NavSearch extends Component {
-    constructor(props){
-        super(props);
-    }
+const NavUser = ({ isAuthenticated, authenticatedInfo }) => {
+    if (isAuthenticated) {
+        return (
+            null
+        );
 
-    render() {
+    } else {
         return (
             <button className="btn btn-primary pull-right"> Sign </button>
         );
     }
-}
 
-export default NavSearch;
+};
+
+export default NavUser;

@@ -1,4 +1,4 @@
-import {saveAuthInfo} from '../_utils/helper';
+import {saveAuthInfo} from '../_utils/AuthHelper';
 export const signinReducer = (state = null, action) => {
     switch (action.type) {
         case 'LOGIN_SUCCESS':

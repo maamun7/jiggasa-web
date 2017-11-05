@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Header from '../_components/header/header';
+import { getIsAuthenticated, getAuthenticatedInfo } from '../_utils/AuthHelper'
 
 const HeadContainer = props => <Header {...props} />;
 
-const mapStateToProps = (state) => {
-
-};
+const mapStateToProps = (state) => ({
+    isAuthenticated: getIsAuthenticated(state),
+    authenticatedInfo: getAuthenticatedInfo(state)
+});
 
 export default connect(mapStateToProps, {
 })(HeadContainer);
