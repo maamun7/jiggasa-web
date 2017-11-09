@@ -8,7 +8,7 @@ const HeadContainer = props => <Header {...props} />;
 const mapStateToProps = (state) => ({
     isAuthenticated: getIsAuthenticated(state),
     authenticatedInfo: getAuthenticatedInfo(state),
-    showLoginModal: showLoginModal(false)
+    //showLoginModal: showLoginModal(false)
 });
 
 export default connect(mapStateToProps, {

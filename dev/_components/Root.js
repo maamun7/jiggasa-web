@@ -8,20 +8,23 @@ const propTypes = {
 };*/
 
 class Root extends Component {
-  componentWillMount() {
+    componentWillMount() {
+        const { initAuth } = this.props;
+        initAuth();
+       // initRouter(paths);
+    }
 
-  }
-
-  render() {
-    const { router, routes } = this.props;
-    return (
-      <div>
-        <Header/>
-        <Router router={router} routes={routes} />
-        <h1> ## </h1>
-      </div>
-    );
-  }
+    render() {
+        const { router, routes } = this.props;
+        console.log("Root props : ", this.props);
+        return (
+            <div>
+                <Header/>
+                <Router router={router} routes={routes} />
+                <h1> ## </h1>
+            </div>
+        );
+    }
 }
 
 //Root.propTypes = propTypes;

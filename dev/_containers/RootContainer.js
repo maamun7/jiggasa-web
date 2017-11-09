@@ -5,6 +5,7 @@ import Root from '../_components/Root';
 
 import { routerCons } from '../_constants';
 import { initRouter } from '../_actions/RouterActions';
+import { initAuth } from '../_actions/SessionAction';
 import HomeContainer from '../_containers/HomeContainer';
 import LoginContainer from '../_containers/LoginContainer';
 
@@ -12,6 +13,8 @@ const RootContainer = props => <Root {...props} />;
 
 const mapStateToProps = (state) => {
   const { router } = state;
+
+    console.log("Root container : ", state);
 
   return {
         paths: [
@@ -29,5 +32,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
+    initAuth,
     initRouter,
 })(RootContainer);

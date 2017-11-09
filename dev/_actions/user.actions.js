@@ -1,7 +1,7 @@
 import * as userConstant from '../_constants';
 import { alertActions } from "./"
 import Axios from 'axios';
-import * as config from '../_utils/config';
+import * as config from '../_utils/CommonUtils';
 
 const register = (user) => {
     return dispatch => {
