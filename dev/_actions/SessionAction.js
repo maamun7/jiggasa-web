@@ -6,15 +6,15 @@ import {
 } from '../_constants/ApiConstants';
 
 
-const loginSuccess = oauthToken => {
+const loginSuccess = oauthToken => ({
     type : types.LOGIN_SUCCESS,
     oauthToken
-};
+});
 
-const fetchSessionUserSuccess = oauthToken => {
+const fetchSessionUserSuccess = oauthToken => ({
     type : types.LOGIN_SUCCESS,
     oauthToken
-};
+});
 
 const fetchSessionUser = oauthToken => async (dispatch) => {
     const { json } = await callApi(`${USER_URL}?oauth_token=${oauthToken}`);
@@ -28,12 +28,9 @@ const fetchSessionData = oauthToken => (dispatch) => {
 };
 
 export const initAuth = () => (dispatch) => {
-    let oauthToken = null;
     const oauth = JSON.parse(localStorage.getItem('auth'));
     if (oauth != null) {
-        oauthToken = oauth.token;
+        dispatch(loginSuccess(oauth.token));
+        dispatch(fetchSessionData(oauth.token));
     }
-    dispatch(loginSuccess(oauthToken));
-  //  dispatch(fetchSessionData(oauthToken));
-
 };

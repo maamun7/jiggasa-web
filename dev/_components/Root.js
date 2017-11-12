@@ -9,14 +9,14 @@ const propTypes = {
 
 class Root extends Component {
     componentWillMount() {
-        const { initAuth } = this.props;
+        const { initAuth, initRouter, paths } = this.props;
         initAuth();
-       // initRouter(paths);
+        initRouter(paths);
     }
 
     render() {
         const { router, routes } = this.props;
-        console.log("Root props : ", this.props);
+        console.log("Root propsgg : ", this.props);
         return (
             <div>
                 <Header/>

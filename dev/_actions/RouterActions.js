@@ -39,6 +39,6 @@ export const initRouter = paths => (dispatch) => {
   const route = parseRoute(hash, paths);
 
 
-    console.log("Pases route: ", route);
+    console.log("hash: ", hash);
   return dispatch(navigateTo(route));
 };
