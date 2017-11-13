@@ -34,3 +34,27 @@ export const initAuth = () => (dispatch) => {
         dispatch(fetchSessionData(oauth.token));
     }
 };
+
+export const login = (user, password) => (dispatch) => {
+    const oauth = JSON.parse(localStorage.getItem('auth'));
+    if (oauth != null) {
+        dispatch(loginSuccess(oauth.token));
+        dispatch(fetchSessionData(oauth.token));
+    }
+};
+
+export const logout = () => (dispatch) => {
+    const oauth = JSON.parse(localStorage.getItem('auth'));
+    if (oauth != null) {
+        dispatch(loginSuccess(oauth.token));
+        dispatch(fetchSessionData(oauth.token));
+    }
+};
+
+export const register = () => (dispatch) => {
+    const oauth = JSON.parse(localStorage.getItem('auth'));
+    if (oauth != null) {
+        dispatch(loginSuccess(oauth.token));
+        dispatch(fetchSessionData(oauth.token));
+    }
+};

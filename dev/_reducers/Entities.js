@@ -1,11 +1,10 @@
 import * as types from '../_constants/ActionTypes';
 
 const initialState = {
-    id: null,
-    oauthToken: null,
+    users:{}
 };
 
-const router = (state = initialState, action) => {
+const entities = (state = initialState, action) => {
   switch (action.type) {
     case types.CHANGE_ROUTE:
       return {
@@ -18,4 +17,4 @@ const router = (state = initialState, action) => {
   }
 };
 
-export default router;
+export default entities;

@@ -7,7 +7,11 @@ import NavUser from './NavUser';
 
 const Header = ({
                     isAuthenticated,
-                    authenticatedInfo,
+                    user,
+                    login,
+                    register,
+                    logout,
+                    search,
                 }) => (
     <div id="top-bar" className="full-width">
         <div className="col-lg-9 header-width">
@@ -20,7 +24,7 @@ const Header = ({
             <div className="col-lg-3">
                 <NavUser
                     isAuthenticated={isAuthenticated}
-                    authenticatedInfo={authenticatedInfo}
+                    user={user}
                 />
             </div>
         </div>
