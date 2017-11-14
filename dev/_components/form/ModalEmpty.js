@@ -1,5 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
+import LoginHtml from '../../_components/form/LoginHtml';
+import RegisterHtml from '../../_components/form/RegisterHtml';
 
 const customStyles = {
     overlay : {
@@ -8,7 +10,7 @@ const customStyles = {
         left              : 0,
         right             : 0,
         bottom            : 0,
-        backgroundColor   : 'rgba(255, 255, 255, 0.00)'
+        backgroundColor   : 'rgba(204, 204, 204, 0.50)'
     },
 
     content : {
@@ -24,8 +26,8 @@ const customStyles = {
         borderRadius               : '4px',
         outline                    : 'none',
         padding                    : '20px',
-        width                      : '45%',
-        height                     : '500px'
+        width                      : '30%',
+        height                     : '350px'
     }
 };
 
@@ -35,6 +37,8 @@ class HiModal extends React.Component {
         super(props);
 
         this.state = {
+            modalIsOpen: false,
+            htmlTemp: null,
             email: '',
             emailClass   : null,
             emailMsg     : null,
@@ -45,33 +49,59 @@ class HiModal extends React.Component {
         };
 
         this.openModal = this.openModal.bind(this);
+        this.openRegModal = this.openRegModal.bind(this);
         this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
 
     openModal() {
+        let loginHtml = <LoginHtml
+            openRegModal={this.openRegModal}
+            handleSubmitSignin={this.handleSubmitSignin}
+            handleInputChange={this.handleInputChange}
+        />;
+        this.setState({htmlTemp: loginHtml});
         this.setState({modalIsOpen: true});
     }
+
+    openRegModal() {
+
+        this.setState({htmlTemp: <RegisterHtml openModal={this.openModal} />});
+        this.setState({modalIsOpen: true});
+    }
+
     closeModal() {
         this.setState({modalIsOpen: false});
     }
+
     afterOpenModal() {
         // references are now sync'd and can be accessed.
         // this.subtitle.style.color = '#f00';
     }
 
+    handleSubmitSignin() {
+        // references are now sync'd and can be accessed.
+        // this.subtitle.style.color = '#f00';
+    }
+
+    handleInputChange() {
+    }
+
     render() {
 
         return (
+
             <div>
+                <button className="btn btn-primary pull-right" onClick={ this.openModal }> Sign </button>
                 <Modal
-                    isOpen={this.props.isOpen}
+                    isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
                     onRequestClose={this.closeModal}
                     style={customStyles}
                     contentLabel="Example Modal"
                 >
-                    <h1> Hello </h1>
+
+                    {this.state.htmlTemp}
 
                 </Modal>
             </div>

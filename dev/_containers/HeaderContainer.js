@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Header from '../_components/header/header';
 import { getIsAuthenticated, getSessionUser } from '../_selectors/CommonSelectors';
 import { login, register, logout } from '../_actions/SessionAction';
-import { search, openModal } from '../_actions/HeaderAction';
+import { search } from '../_actions/HeaderAction';
 
 const HeadContainer = props => <Header {...props} />;
 
@@ -17,5 +17,4 @@ export default connect(mapStateToProps, {
     register,
     logout,
     search,
-    openModal,
 })(HeadContainer);

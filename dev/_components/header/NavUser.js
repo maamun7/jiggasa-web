@@ -1,7 +1,8 @@
 import React, { Component} from 'react';
 import LoginModal from '../../_components/form/LoginModal'
+import NewModal from '../../_components/form/ModalEmpty'
 
-const NavUser = ({ isAuthenticated, openModal }) => {
+const NavUser = ({ isAuthenticated }) => {
     if (isAuthenticated) {
         return (
             null
@@ -9,7 +10,8 @@ const NavUser = ({ isAuthenticated, openModal }) => {
 
     } else {
         return (
-            <button className="btn btn-primary pull-right" onClick={ openModal }> Sign </button>
+            <NewModal />
+
         );
     }
 

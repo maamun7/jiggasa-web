@@ -12,7 +12,7 @@ const Header = ({
                     register,
                     logout,
                     search,
-                    openModal,
+
                 }) => (
     <div id="top-bar" className="full-width">
         <div className="col-lg-9 header-width">
@@ -26,7 +26,6 @@ const Header = ({
                 <NavUser
                     isAuthenticated={isAuthenticated}
                     user={user}
-                    openModal={openModal}
                 />
             </div>
         </div>
