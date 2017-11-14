@@ -57,8 +57,6 @@ class HiModal extends React.Component {
     openModal() {
         let loginHtml = <LoginHtml
             openRegModal={this.openRegModal}
-            handleSubmitSignin={this.handleSubmitSignin}
-            handleInputChange={this.handleInputChange}
         />;
         this.setState({htmlTemp: loginHtml});
         this.setState({modalIsOpen: true});
@@ -66,6 +64,7 @@ class HiModal extends React.Component {
 
     openRegModal() {
 
+        console.log("DEBUGG :", 'kkkkkkkkkkk');
         this.setState({htmlTemp: <RegisterHtml openModal={this.openModal} />});
         this.setState({modalIsOpen: true});
     }
@@ -101,7 +100,7 @@ class HiModal extends React.Component {
                     contentLabel="Example Modal"
                 >
 
-                    {this.state.htmlTemp}
+                    <div> {this.state.htmlTemp} </div>
 
                 </Modal>
             </div>
