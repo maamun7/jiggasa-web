@@ -1,8 +1,13 @@
-import React, { Component} from 'react';
-import LoginModal from '../../_components/form/LoginModal'
+import React from 'react';
 import NewModal from '../../_components/form/ModalEmpty'
 
-const NavUser = ({ isAuthenticated }) => {
+const NavUser = ({
+    isAuthenticated,
+    user,
+    login,
+    register,
+    logout,
+    }) => {
     if (isAuthenticated) {
         return (
             null
@@ -10,7 +15,11 @@ const NavUser = ({ isAuthenticated }) => {
 
     } else {
         return (
-            <NewModal />
+            <NewModal  isAuthenticated={isAuthenticated}
+                       user={user}
+                       login={login}
+                       register={register}
+                       logout={logout} />
 
         );
     }

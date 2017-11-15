@@ -23,8 +23,6 @@ class RegisterHtml extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSubmitSignin = this.handleSubmitSignin.bind(this);
-
-
     }
 
     openModal() {
@@ -38,32 +36,6 @@ class RegisterHtml extends React.Component {
 
     closeModal() {
         this.setState({modalIsOpen: false});
-    }
-
-    getNameValidationState() {
-        var validation = new Validator({
-                name: this.state.name
-            },
-            {
-                name: 'required|min:3|max:10'
-            });
-
-        if (validation.fails()) {
-            return {
-                cssClass : 'error',
-                msg : validation.errors.first('name')
-            }
-        } else if (validation.passes()) {
-            return {
-                cssClass : 'success',
-                msg : null
-            }
-        } else {
-            return {
-                cssClass : null,
-                msg : null
-            }
-        }
     }
 
     handleInputChange(event) {
@@ -90,21 +62,6 @@ class RegisterHtml extends React.Component {
             this.singleValidation('password', target.value, 'required|min:6|alpha_num|max:100');
         }
 
-        /// For signin
-
-        if (target.name === 'username') {
-            this.setState({
-                username: target.value
-            });
-            this.singleValidation('username', target.value, 'required|email');
-        }
-
-        if (target.name === 'pass') {
-            this.setState({
-                pass: target.value
-            });
-            this.singleValidation('pass', target.value, 'required|min:6|alpha_num|max:100');
-        }
     }
 
     singleValidation(stateName, value, rulesStr) {
@@ -181,6 +138,7 @@ class RegisterHtml extends React.Component {
                 password : this.state.password,
                 is_admin : this.state.is_admin
             };
+
             this.props.submitSignup(inputs);
         }
     }
@@ -246,55 +204,50 @@ class RegisterHtml extends React.Component {
 
         return (
             <div>
-                {/*<button className="btn btn-primary pull-right" > Signup </button>*/}
+                <div id="home-modal-container">
+                    <div className="row grid-divider">
+                        <div className="col-sm-12">
+                            <div className="col-padding">
+                                <form onSubmit={this.handleSubmit}>
+                                    <FormGroup controlId="formValidationSuccess1" validationState={ this.state.nameClass }>
+                                        <FormControl
+                                            name="name"
+                                            type="text"
+                                            value={this.state.name}
+                                            onChange={this.handleInputChange}
+                                            placeholder="Name"/>
+                                        <FormControl.Feedback />
+                                        <HelpBlock> {this.state.nameMsg} </HelpBlock>
+                                    </FormGroup>
 
-                    <div id="home-modal-container">
-                            <div className="row grid-divider">
-                                    <div className="col-sm-12">
-                                            <div className="col-padding">
-                                                    <form onSubmit={this.handleSubmit}>
+                                    <FormGroup controlId="formValidationSuccess1" validationState={ this.state.emailClass }>
+                                    {/* <ControlLabel>Input with error</ControlLabel>*/}
+                                        <FormControl
+                                            name="email"
+                                            type="text"
+                                            value={this.state.email}
+                                            onChange={this.handleInputChange}
+                                            placeholder="Email" />
+                                        <FormControl.Feedback />
+                                        <HelpBlock> {this.state.emailMsg} </HelpBlock>
+                                    </FormGroup>
 
-                                                            <FormGroup controlId="formValidationSuccess1" validationState={ this.state.nameClass }>
-                                                                    <FormControl
-                                                                        name="name"
-                                                                        type="text"
-                                                                        value={this.state.name}
-                                                                        onChange={this.handleInputChange}
-                                                                        placeholder="Name"/>
-                                                                    <FormControl.Feedback />
-                                                                    <HelpBlock> {this.state.nameMsg} </HelpBlock>
-                                                            </FormGroup>
-
-                                                            <FormGroup controlId="formValidationSuccess1" validationState={ this.state.emailClass }>
-                                                                {/* <ControlLabel>Input with error</ControlLabel>*/}
-                                                                    <FormControl
-                                                                        name="email"
-                                                                        type="text"
-                                                                        value={this.state.email}
-                                                                        onChange={this.handleInputChange}
-                                                                        placeholder="Email" />
-                                                                    <FormControl.Feedback />
-                                                                    <HelpBlock> {this.state.emailMsg} </HelpBlock>
-
-                                                            </FormGroup>
-
-                                                            <FormGroup controlId="formValidationSuccess1" validationState={ this.state.passwordClass }>
-                                                                    <FormControl
-                                                                        name="password"
-                                                                        type="text"
-                                                                        value={this.state.password}
-                                                                        onChange={this.handleInputChange}
-                                                                        placeholder="Password" />
-                                                                    <FormControl.Feedback />
-                                                                    <HelpBlock> {this.state.passwordMsg} </HelpBlock>
-                                                            </FormGroup>
-
-                                                            <Button bsStyle="success" bsSize="sm" block type="submit"> Signup </Button>
-                                                    </form>
-                                            </div>
-                                    </div>
+                                    <FormGroup controlId="formValidationSuccess1" validationState={ this.state.passwordClass }>
+                                        <FormControl
+                                            name="password"
+                                            type="text"
+                                            value={this.state.password}
+                                            onChange={this.handleInputChange}
+                                            placeholder="Password" />
+                                        <FormControl.Feedback />
+                                        <HelpBlock> {this.state.passwordMsg} </HelpBlock>
+                                    </FormGroup>
+                                    <Button bsStyle="success" bsSize="sm" block type="submit"> Signup </Button>
+                                </form>
                             </div>
+                        </div>
                     </div>
+                </div>
             </div>
         );
     }

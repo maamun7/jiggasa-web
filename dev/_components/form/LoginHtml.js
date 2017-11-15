@@ -47,7 +47,7 @@ class LoginHtml extends React.Component {
 
     }
 
-    getNameValidationState() {
+   /* getNameValidationState() {
         var validation = new Validator({
                 name: this.state.name
             },
@@ -71,7 +71,7 @@ class LoginHtml extends React.Component {
                 msg : null
             }
         }
-    }
+    }*/
 
     handleInputChange(event) {
         const target = event.target;
@@ -188,7 +188,7 @@ class LoginHtml extends React.Component {
                 password : this.state.password,
                 is_admin : this.state.is_admin
             };
-            this.props.submitSignup(inputs);
+            this.props.login(inputs);
         }
     }
 
@@ -227,11 +227,15 @@ class LoginHtml extends React.Component {
             }
         }
         else {
+            
             let inputs = {
                 email : this.state.username,
                 password : this.state.pass
             };
-            this.props.submitSignin(inputs);
+
+
+            console.log("Login submit : ", inputs);
+            this.props.login(inputs);
         }
     }
 

@@ -20,12 +20,17 @@ const Header = ({
                 <img src={ require('../../../public/assets/img/logo.jpg') } height={35}/>
             </div>
             <div className="col-lg-6">
-                <NavSearch/>
+                <NavSearch
+                    search={search}
+                />
             </div>
             <div className="col-lg-3">
                 <NavUser
                     isAuthenticated={isAuthenticated}
                     user={user}
+                    login={login}
+                    register={register}
+                    logout={logout}
                 />
             </div>
         </div>

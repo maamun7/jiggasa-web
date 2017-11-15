@@ -1,6 +1,7 @@
 import * as types from '../_constants/ActionTypes';
-import { callApi } from '../_utils/ApiUtils';
+import { callApi, callsApi } from '../_utils/ApiUtils';
 import { userSchema } from '../_constants/Schemas';
+import * as utils from '../_utils/CommonUtils'
 import {
     USER_URL,
 } from '../_constants/ApiConstants';
@@ -35,12 +36,44 @@ export const initAuth = () => (dispatch) => {
     }
 };
 
-export const login = (user, password) => (dispatch) => {
-    const oauth = JSON.parse(localStorage.getItem('auth'));
+export const login = (inputs) => async (dispatch) => {
+    let optionObj = {
+        method: 'post',
+        data: inputs
+    };
+
+    const res = await callsApi(`${utils.BASE_HOST}signin`, optionObj);
+
+
+    console.log("Api response: ", res +'rat ke boli');
+
+
+    /*const oauth = JSON.parse(localStorage.getItem('auth'));
     if (oauth != null) {
         dispatch(loginSuccess(oauth.token));
         dispatch(fetchSessionData(oauth.token));
     }
+
+    const login = (user) => {
+
+        dispatch(request(user));
+
+        return dispatch => {
+            Axios.post(config.BASE_URL+"/signin", user)
+                .then(user => {
+                    dispatch(success(user));
+                    history.push('/');
+                })
+                .catch(error => {
+                    dispatch(failure(error));
+                    dispatch(alertActions.error(error));
+                });
+        };
+
+        function request (user) { return { type: userConstant.LOGIN_REQUEST, user } };
+        function success (user) { return { type: userConstant.LOGIN_SUCCESS, user } };
+        function failure (error) { return { type: userConstant.LOGIN_ERROR, error } };
+    };*/
 };
 
 export const logout = () => (dispatch) => {

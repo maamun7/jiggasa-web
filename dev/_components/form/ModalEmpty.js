@@ -57,15 +57,18 @@ class HiModal extends React.Component {
     openModal() {
         let loginHtml = <LoginHtml
             openRegModal={this.openRegModal}
+            user={this.props.user}
+            login={this.props.login}
+            logout={this.props.logout}
         />;
+
         this.setState({htmlTemp: loginHtml});
         this.setState({modalIsOpen: true});
     }
 
     openRegModal() {
-
-        console.log("DEBUGG :", 'kkkkkkkkkkk');
-        this.setState({htmlTemp: <RegisterHtml openModal={this.openModal} />});
+        this.setState({htmlTemp: <RegisterHtml openModal={this.openModal}
+                                               register={this.props.register} />});
         this.setState({modalIsOpen: true});
     }
 
@@ -73,18 +76,7 @@ class HiModal extends React.Component {
         this.setState({modalIsOpen: false});
     }
 
-    afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        // this.subtitle.style.color = '#f00';
-    }
-
-    handleSubmitSignin() {
-        // references are now sync'd and can be accessed.
-        // this.subtitle.style.color = '#f00';
-    }
-
-    handleInputChange() {
-    }
+    afterOpenModal() { }
 
     render() {
 
