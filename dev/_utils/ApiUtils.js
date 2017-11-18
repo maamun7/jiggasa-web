@@ -1,6 +1,6 @@
 import camelize from 'camelize';
 import Axios from 'axios';
-
+/*
 export const callApi = (url, options) => {
 
     fetch(url, options)
@@ -16,11 +16,44 @@ export const callApi = (url, options) => {
             error => ({ error })
         )
         .catch(error => ({ error }));
+};*/
+
+const getHeader = () => {
+    return {
+        Authorization : JSON.parse(localStorage.getItem('oauth'))
+    };
 };
 
-export const callsApi = (url, options) => {
-    Axios(url, options).then(res => {
-       return { json : camelize( res.json()) };
+export const callGetApi = (url, paramsObj = null, addHeader = true) => {
+
+    let headerObj = getHeader();
+    if (! addHeader) {
+        headerObj = null
+    }
+
+    return Axios.get(url, { params: paramsObj, headers : headerObj })
+    .then(res => {
+        const { data } = res;
+        return camelize(data);
     })
-    .catch( error => ({ error }));
+    .catch(error => {
+        return error;
+    });
+};
+
+export const callPostApi = (url, options, addHeader = true) => {
+
+    let headerObj = getHeader();
+    if (! addHeader) {
+        headerObj = null
+    }
+
+    return Axios.post(url, options, { headers : headerObj })
+    .then(res => {
+        const { data } = res;
+        return camelize(data);
+    })
+    .catch(error => {
+        return error;
+    });
 };

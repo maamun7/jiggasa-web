@@ -1,5 +1,5 @@
 import * as types from '../_constants/ActionTypes';
-import { callApi, callsApi } from '../_utils/ApiUtils';
+import { callGetApi, callPostApi } from '../_utils/ApiUtils';
 import { userSchema } from '../_constants/Schemas';
 import * as utils from '../_utils/CommonUtils'
 import {
@@ -18,9 +18,14 @@ const fetchSessionUserSuccess = oauthToken => ({
 });
 
 const fetchSessionUser = oauthToken => async (dispatch) => {
-    const { json } = await callApi(`${USER_URL}?oauth_token=${oauthToken}`);
+    const response = await callGetApi(`${utils.BASE_HOST}oauth_token`);
+
+    console.log("fetchSessionUser :", response);
+
+
+    /*const { json } = await callApi(`${USER_URL}?oauth_token=${oauthToken}`);
     const { result, entities } = normalize(json, userSchema);
-    dispatch(fetchSessionUserSuccess(result, entities));
+    dispatch(fetchSessionUserSuccess(result, entities));*/
 };
 
 const fetchSessionData = oauthToken => (dispatch) => {
@@ -37,15 +42,19 @@ export const initAuth = () => (dispatch) => {
 };
 
 export const login = (inputs) => async (dispatch) => {
-    let optionObj = {
-        method: 'post',
-        data: inputs
-    };
+    const response = await callPostApi(`${utils.BASE_HOST}signin`, inputs, false);
+    const { success, msg, token, name, email  } = response;
+    if (success) {
+        //Save token to local storage
+        //localStorage.setItem('oauth', JSON.stringify(authInfo));
+        localStorage.setItem('oauth', JSON.stringify(token));
 
-    const res = await callsApi(`${utils.BASE_HOST}signin`, optionObj);
+        dispatch(loginSuccess(token));
+        dispatch(fetchSessionData(token));
+    }
 
 
-    console.log("Api response: ", res +'rat ke boli');
+    console.log("Api response: ", response );
 
 
     /*const oauth = JSON.parse(localStorage.getItem('auth'));

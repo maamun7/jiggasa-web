@@ -7,11 +7,11 @@ const initialState = {
 
 const router = (state = initialState, action) => {
   switch (action.type) {
-    case types.CHANGE_ROUTE:
-      return {
-        ...state,
-        route: action.route,
-      };
+    case types.LOGIN_SUCCESS:
+        return {
+            ...state,
+            oauthToken: action.oauthToken,
+        };
 
     default:
       return state;
