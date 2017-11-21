@@ -14,8 +14,6 @@ const RootContainer = props => <Root {...props} />;
 const mapStateToProps = (state) => {
   const { router } = state;
 
-    console.log("Root container : ", state);
-
   return {
         paths: [
             routerCons.INDEX_PATH,
