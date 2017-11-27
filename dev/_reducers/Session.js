@@ -2,7 +2,8 @@ import * as types from '../_constants/ActionTypes';
 
 const initialState = {
     id: null,
-    oauthToken: null
+    oauthToken: null,
+    loginFail: null,
 };
 
 const router = (state = initialState, action) => {

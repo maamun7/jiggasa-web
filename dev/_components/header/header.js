@@ -9,6 +9,7 @@ const Header = ({
                     isAuthenticated,
                     user,
                     login,
+                    loginFail,
                     register,
                     logout,
                     search,
@@ -29,6 +30,7 @@ const Header = ({
                     isAuthenticated={isAuthenticated}
                     user={user}
                     login={login}
+                    loginFail={loginFail}
                     register={register}
                     logout={logout}
                 />

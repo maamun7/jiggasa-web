@@ -5,6 +5,7 @@ const NavUser = ({
     isAuthenticated,
     user,
     login,
+    loginFail,
     register,
     logout,
     }) => {
@@ -18,6 +19,7 @@ const NavUser = ({
             <NewModal  isAuthenticated={isAuthenticated}
                        user={user}
                        login={login}
+                       loginFail={loginFail}
                        register={register}
                        logout={logout} />
 

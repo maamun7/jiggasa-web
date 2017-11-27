@@ -14,7 +14,9 @@ class LoginHtml extends React.Component {
 
             password: '',
             passwordClass   : null,
-            passwordMsg     : null
+            passwordMsg     : null,
+
+           loginFail     : 'ffgf'
         };
 
         this.openModal = this.openModal.bind(this);
@@ -234,6 +236,7 @@ class LoginHtml extends React.Component {
                     <div className="row grid-divider">
                         <div className="col-sm-12">
                             <div className="col-padding">
+                                <span> { this.state.loginFail } </span>
                                 <form onSubmit={this.handleSubmitSignin}>
 
                                     <FormGroup controlId="formValidationSuccess1" validationState={ this.state.usernameClass }>

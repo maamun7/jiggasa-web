@@ -59,6 +59,7 @@ class HiModal extends React.Component {
             openRegModal={this.openRegModal}
             user={this.props.user}
             login={this.props.login}
+            loginFail={this.props.loginFail}
             logout={this.props.logout}
         />;
 

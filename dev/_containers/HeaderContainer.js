@@ -7,10 +7,14 @@ import { search } from '../_actions/HeaderAction';
 
 const HeadContainer = props => <Header {...props} />;
 
-const mapStateToProps = (state) => ({
-    isAuthenticated: getIsAuthenticated(state),
-    user: getSessionUser(state),
-});
+const mapStateToProps = (state) => {
+    console.log("state.session : ", state.session);
+    return {
+        isAuthenticated: getIsAuthenticated(state),
+        user: getSessionUser(state),
+        loginFail: state.session.loginFail
+    }
+};
 
 export default connect(mapStateToProps, {
     login,
