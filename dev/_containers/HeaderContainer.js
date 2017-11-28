@@ -8,7 +8,6 @@ import { search } from '../_actions/HeaderAction';
 const HeadContainer = props => <Header {...props} />;
 
 const mapStateToProps = (state) => {
-    console.log("state.session : ", state.session);
     return {
         isAuthenticated: getIsAuthenticated(state),
         user: getSessionUser(state),

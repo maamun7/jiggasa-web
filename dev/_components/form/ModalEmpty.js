@@ -38,7 +38,9 @@ class HiModal extends React.Component {
 
         this.state = {
             modalIsOpen: false,
-            htmlTemp: null,
+            isOpenSignUpModel : false,
+            openSignupModal : false,
+
             email: '',
             emailClass   : null,
             emailMsg     : null,
@@ -55,16 +57,20 @@ class HiModal extends React.Component {
     }
 
     openModal() {
-        let loginHtml = <LoginHtml
+
+      /*  let loginHtml = <LoginHtml
             openRegModal={this.openRegModal}
             user={this.props.user}
             login={this.props.login}
             loginFail={this.props.loginFail}
             logout={this.props.logout}
-        />;
+        />;*/
 
-        this.setState({htmlTemp: loginHtml});
+      //  this.setState({htmlTemp: loginHtml});
+        this.setState({isOpenSignUpModel: true});
         this.setState({modalIsOpen: true});
+
+      //  console.log("New this.props", this.props);
     }
 
     openRegModal() {
@@ -80,9 +86,8 @@ class HiModal extends React.Component {
     afterOpenModal() { }
 
     render() {
-
+        const isOpenSignUpModel = this.state.isOpenSignUpModel;
         return (
-
             <div>
                 <button className="btn btn-primary pull-right" onClick={ this.openModal }> Sign </button>
                 <Modal
@@ -93,7 +98,16 @@ class HiModal extends React.Component {
                     contentLabel="Example Modal"
                 >
 
-                    <div> {this.state.htmlTemp} </div>
+                    {/*<div> {this.state.htmlTemp} </div>*/}
+                    {isOpenSignUpModel ? (
+                    <LoginHtml
+                        openRegModal={this.openRegModal}
+                        user={this.props.user}
+                        login={this.props.login}
+                        loginFail={this.props.loginFail}
+                        logout={this.props.logout}
+                    /> ) : (<RegisterHtml openModal={this.openModal}
+                                          register={this.props.register} />)}
 
                 </Modal>
             </div>

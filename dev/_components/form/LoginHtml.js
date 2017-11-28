@@ -16,7 +16,7 @@ class LoginHtml extends React.Component {
             passwordClass   : null,
             passwordMsg     : null,
 
-           loginFail     : 'ffgf'
+           loginFail     : null
         };
 
         this.openModal = this.openModal.bind(this);
@@ -26,6 +26,7 @@ class LoginHtml extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSubmitSignin = this.handleSubmitSignin.bind(this);
         this.newRegister = this.newRegister.bind(this);
+        this.getLoginFailText = this.getLoginFailText.bind(this);
 
 
     }
@@ -213,6 +214,22 @@ class LoginHtml extends React.Component {
         }
     }
 
+    getLoginFailText(){
+
+        this.setState({
+            'loginFail': this.props.loginFail
+        });
+    }
+
+    componentWillReceiveProps(newProps)
+    {
+
+        console.log("componentWillReceiveProps", newProps);
+        this.setState({
+            'loginFail': this.props.loginFail
+        });
+    }
+
     render() {
 
         let serverResponse = this.props.serverResponse;
@@ -227,7 +244,6 @@ class LoginHtml extends React.Component {
             }
         }
 
-        console.log("---- :", this.props.serverResponse);
 
         return (
             <div>
@@ -236,7 +252,7 @@ class LoginHtml extends React.Component {
                     <div className="row grid-divider">
                         <div className="col-sm-12">
                             <div className="col-padding">
-                                <span> { this.state.loginFail } </span>
+                                <span className="error-msg"> { this.props.loginFail } </span>
                                 <form onSubmit={this.handleSubmitSignin}>
 
                                     <FormGroup controlId="formValidationSuccess1" validationState={ this.state.usernameClass }>
