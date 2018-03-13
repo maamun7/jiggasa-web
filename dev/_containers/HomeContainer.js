@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import HomeModal from '../_components/home/homeModal';
 import { connect } from 'react-redux';
 import * as userAction from '../_actions/user.actions';
 import { getIsAuthenticated, getAuthInfo } from '../_utils/AuthHelper';

@@ -2,10 +2,6 @@
 import React, { Component } from 'react';
 import Router from '../_components/Router'
 import Header from '../_containers/HeaderContainer'
-/*
-const propTypes = {
-
-};*/
 
 class Root extends Component {
     componentWillMount() {

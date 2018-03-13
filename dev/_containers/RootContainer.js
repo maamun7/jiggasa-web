@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import Root from '../_components/Root';
-
 import { routerCons } from '../_constants';
 import { initRouter } from '../_actions/RouterActions';
 import { initAuth } from '../_actions/SessionAction';

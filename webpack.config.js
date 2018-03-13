@@ -7,7 +7,7 @@ module.exports = {
     devtool: 'cheap-module-eval-source-map',
     entry: [
         'react-hot-loader/patch',
-        './index.jsx'
+        './index.js'
     ],
     module: {
         loaders: [
@@ -15,6 +15,11 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 loaders: ['babel-loader'],
                 exclude: /node_modules/
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ['babel-loader', 'eslint-loader']
             },
             {
                 test: /\.scss/,
