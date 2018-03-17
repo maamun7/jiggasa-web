@@ -14,6 +14,9 @@ const Router = ({ router, routes }) => {
   const { path } = router.route;
   if (path in routes) {
     const Component = routes[path];
+
+
+      console.log("Return Router comp :", Component);
     return <Component />;
   }
 

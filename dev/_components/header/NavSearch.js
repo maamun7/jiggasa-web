@@ -12,11 +12,7 @@ class NavSearch extends React.Component {
 
     render() {
         return (
-            <div className="nav-search">
-                <i className="nav-search__icon ion-search" />
-                <input type="text" onKeyPress={this.onKeyPress}
-                       placeholder="SEARCH" />
-            </div>
+            <input className="form-control form-control-dark w-75 input-search-field" type="text" placeholder="Search" onKeyPress={this.onKeyPress} />
         );
     }
 }

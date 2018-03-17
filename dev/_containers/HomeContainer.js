@@ -41,7 +41,8 @@ class HomeContainer extends React.Component {
     render() {
 
         console.log("Show modal status :", this.state.showModal);
-        return (<div>
+        return (
+            <div className="">
                 {/*<HomeModal
             isOpen={this.state.showModal}
             submitSignup={this.handleSubmitSignup}

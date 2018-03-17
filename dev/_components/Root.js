@@ -6,6 +6,7 @@ import Header from '../_containers/HeaderContainer'
 class Root extends Component {
     componentWillMount() {
         const { initAuth, initRouter, paths } = this.props;
+        console.log("Path :", paths);
         initAuth();
         initRouter(paths);
     }
@@ -16,8 +17,12 @@ class Root extends Component {
         return (
             <div>
                 <Header/>
-                <Router router={router} routes={routes} />
-                <h1> ## </h1>
+                <div className="container">
+                    <div className="row">
+                        <Router router={router} routes={routes} />
+                        <h2> Amar sonar bangla </h2>
+                    </div>
+                </div>
             </div>
         );
     }

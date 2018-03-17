@@ -17,11 +17,6 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: ['babel-loader', 'eslint-loader']
-            },
-            {
                 test: /\.scss/,
                 loader: 'style-loader!css-loader!sass-loader'
             },
@@ -57,7 +52,7 @@ module.exports = {
     devServer: {
         inline: true,
         contentBase: '/src',
-        host: 'localhost',
+        host: '127.0.0.1',
         port: 8080
     },
 };
