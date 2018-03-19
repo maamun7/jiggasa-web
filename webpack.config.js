@@ -1,42 +1,80 @@
 var path = require('path');
 var webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractCSS = new ExtractTextPlugin('app.app.css');
 
-module.exports = {
-    context: path.resolve('dev/'),
+const config = {
     devtool: 'cheap-module-eval-source-map',
     entry: [
         'react-hot-loader/patch',
         './index.js'
     ],
+    output: {
+        path: path.resolve(__dirname , 'dist'),
+        filename: 'app.bundle.min.js',
+        publicPath: 'dist'
+    },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.(js|jsx)$/,
-                loaders: ['babel-loader'],
-                exclude: /node_modules/
-            },
-            {
-                test: /\.scss/,
-                loader: 'style-loader!css-loader!sass-loader'
+                use: ['babel-loader'],
+                exclude: '/node_modules/'
             },
             {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader'
+                use: ExtractCSS.extract({
+                    use: 'css-loader',
+                    fallback: 'style-loader'
+                })
+            },
+            {
+                test:  /\.sass$/,
+                use: ExtractCSS.extract({
+                    use: [
+                        'css-loader',
+                        {
+                            'loader': 'sass-loader',
+                            options: {
+                                outputStyle : 'expanded'
+                            }
+                        }
+                    ]
+                })
+            },
+            {
+                test:  /\.scss$/,
+                use: ExtractCSS.extract({
+                    use: [
+                        'css-loader',
+                        {
+                            'loader': 'sass-loader',
+                            options: {
+                                outputStyle : 'expanded'
+                            }
+                        }
+                    ]
+                })
             },
             {
                 test: /\.html$/,
-                loader: 'html-loader'
+                use: ['html-loader']
             },
             {
                 test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-                loader: 'url-loader',
-                options: {
-                    limit: 10000
-                }
+                use: [
+                    'url-loader',
+                    {
+                        options: {
+                            limit: 10000
+                        }
+                    }
+                ]
             }
         ]
     },
+
     resolve: {
         extensions: ['.js', '.jsx']
     },
@@ -54,11 +92,7 @@ module.exports = {
         contentBase: '/src',
         host: '127.0.0.1',
         port: 8080
-    },
+    }
 };
 
-/*
-devServer: {
-    historyApiFallback: true,
-},*/
-
+module.exports = config;
