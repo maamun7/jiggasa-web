@@ -2,24 +2,25 @@ var path = require('path');
 var webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const ExtractCSS = new ExtractTextPlugin('app.app.css');
+const ExtractCSS = new ExtractTextPlugin('app.style.css');
 
 const config = {
     devtool: 'cheap-module-eval-source-map',
     entry: [
-        'react-hot-loader/patch',
-        './index.js'
+        './dev/app.js'
     ],
+
     output: {
         path: path.resolve(__dirname , 'dist'),
-        filename: 'app.bundle.min.js',
-        publicPath: 'dist'
+        filename: 'app.bundle.js',
+        publicPath: '/'
     },
+
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                use: ['babel-loader'],
+                loader: ['babel-loader'],
                 exclude: '/node_modules/'
             },
             {
@@ -35,7 +36,7 @@ const config = {
                     use: [
                         'css-loader',
                         {
-                            'loader': 'sass-loader',
+                            loader: 'sass-loader',
                             options: {
                                 outputStyle : 'expanded'
                             }
@@ -49,7 +50,7 @@ const config = {
                     use: [
                         'css-loader',
                         {
-                            'loader': 'sass-loader',
+                            loader: 'sass-loader',
                             options: {
                                 outputStyle : 'expanded'
                             }
@@ -59,15 +60,15 @@ const config = {
             },
             {
                 test: /\.html$/,
-                use: ['html-loader']
+                loader: ['html-loader']
             },
             {
                 test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
                 use: [
-                    'url-loader',
                     {
+                        loader: 'url-loader',
                         options: {
-                            limit: 10000
+                            limit: 8192
                         }
                     }
                 ]
@@ -76,20 +77,17 @@ const config = {
     },
 
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['*', '.js', '.jsx']
     },
-    output: {
-        path: '/src',
-        filename: 'js/bundle.min.js',
-        publicPath: '/'
-    },
+
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
-        new HtmlWebpackPlugin({ template: '../src/index.html' })
+        new HtmlWebpackPlugin({ template: './src/index.html' })
     ],
+
     devServer: {
         inline: true,
-        contentBase: '/src',
+        contentBase: './dist',
         host: '127.0.0.1',
         port: 8080
     }
