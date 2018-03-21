@@ -81,7 +81,7 @@ const config = {
     },
 
     plugins: [
-        new webpack.optimize.OccurrenceOrderPlugin(),
+        ExtractCSS,
         new HtmlWebpackPlugin({ template: './src/index.html' })
     ],
 

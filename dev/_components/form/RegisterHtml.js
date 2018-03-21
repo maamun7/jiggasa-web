@@ -31,7 +31,7 @@ class RegisterHtml extends React.Component {
 
     afterOpenModal() {
         // references are now sync'd and can be accessed.
-        // this.subtitle.style.color = '#f00';
+        // this.subtitle.styles.color = '#f00';
     }
 
     closeModal() {
