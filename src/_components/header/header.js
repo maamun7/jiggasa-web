@@ -15,9 +15,10 @@ const Header = ({
                     search,
 
                 }) => (
-                <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+                <nav className="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0 top-header-border" >
                     <div className="container">
-                        <img className="navbar-brand col-sm-3 col-md-2 mr-0" src={ require('../../../public/assets/img/logo.jpg') } height={35}/>
+                        {/*<img className="navbar-brand col-sm-3 col-md-2 mr-0" src={ require('../../_assets/images/logo.jpg') } height={35}/>*/}
+                        <div className="logo-text">  জিজ্ঞাসা..? </div>
                         <NavSearch
                             search={search}
                         />

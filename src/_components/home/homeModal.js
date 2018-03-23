@@ -298,7 +298,7 @@ class HomeModal extends React.Component {
                     contentLabel="Example Modal"
                 >
                     <center>
-                        <img src={ require('../../../public/assets/img/logo.jpg') } height={55}/>
+                        <img src={ require('../../_assets/images/logo.jpg') } height={55}/>
                     </center>
                     <h2 ref={subtitle => this.subtitle = subtitle}> &nbsp; </h2>
 

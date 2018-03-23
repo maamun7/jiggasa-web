@@ -7,7 +7,7 @@ const ExtractCSS = new ExtractTextPlugin('app.style.css');
 const config = {
     devtool: 'cheap-module-eval-source-map',
     entry: [
-        './dev/app.js'
+        './src/app.js'
     ],
 
     output: {
