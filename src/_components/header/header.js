@@ -15,21 +15,22 @@ const Header = ({
                     search,
 
                 }) => (
-                <nav className="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0 top-header-border" >
+                <div className="header-wrapper" >
                     <div className="container">
-                        {/*<img className="navbar-brand col-sm-3 col-md-2 mr-0" src={ require('../../_assets/images/logo.jpg') } height={35}/>*/}
-                        <div className="logo-text">  জিজ্ঞাসা..? </div>
-                        <NavSearch
-                            search={search}
-                        />
-
-                        <ul className="navbar-nav px-3">
-                            <li className="nav-item text-nowrap">
-                                <a className="nav-link" href="#">Sign out</a>
-                            </li>
-                        </ul>
+                        <div className="row">
+                            <div className="header-logo col-md-2">  জিজ্ঞাসা..?
+                                <span className="logo-text">  জিজ্ঞাসা..? </span>
+                            </div>
+                            <div className="header-search col-md-7">
+                                <NavSearch search={search}  />
+                            </div>
+                            <div className="header-button col-md-3">
+                                <button type="button" className="btn btn-sm btn-success"> Ask New Question  </button>
+                                <button type="button" className="btn btn-sm"> Sign In  </button>
+                            </div>
+                        </div>
                     </div>
-                </nav>
+                </div>
                 );
 
 

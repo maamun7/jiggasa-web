@@ -15,10 +15,8 @@ class HomePage extends Component {
 
     render() {
         return (
-                <div>
-                    <Jumbotron>
+                <div className="container">
                         <h1> Hello Banlgadesh </h1>
-                    </Jumbotron>
                 </div>
             );
         };
