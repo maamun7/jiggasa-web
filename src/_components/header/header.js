@@ -18,15 +18,15 @@ const Header = ({
                 <div className="header-wrapper" >
                     <div className="container">
                         <div className="row">
-                            <div className="header-logo col-md-2">  জিজ্ঞাসা..?
+                            <div className="header-logo col-md-auto">
                                 <span className="logo-text">  জিজ্ঞাসা..? </span>
                             </div>
-                            <div className="header-search col-md-7">
+                            <div className="header-search col-sm-8 col-md-8 col-lg-8">
                                 <NavSearch search={search}  />
                             </div>
-                            <div className="header-button col-md-3">
-                                <button type="button" className="btn btn-sm btn-success"> Ask New Question  </button>
-                                <button type="button" className="btn btn-sm"> Sign In  </button>
+                            <div className="header-button col-md-auto">
+                                <button type="button" className="btn btn-sm btn-success btn-ask-question"> Ask New Question  </button>
+                                <button type="button" className="btn btn-sm btn-others"> Sign In  </button>
                             </div>
                         </div>
                     </div>

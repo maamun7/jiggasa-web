@@ -54,7 +54,7 @@ html {
   background-image: url('../../images/searchicon.png');
   background-position: 13px 9px;
   background-repeat: no-repeat;
-  padding: 12px 12px 12px 32px;
+  padding: 7px 12px 8px 32px;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
 }
@@ -68,9 +68,16 @@ html {
 }
 
 .header-button > .btn-ask-question {
-
+  margin-right: 7px;
 }
 
+.header-button > .btn-others {
+  /*margin: 0px 0px 0px 5px;*/
+}
+
+.margin-padding-none {
+  padding-right: 0px !important;
+}
 
 #home-modal-container {
   margin: 0px;
