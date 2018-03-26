@@ -44,12 +44,12 @@ class HomeContainer extends React.Component {
         return (
             <div className="">
                 {/*<HomeModal
-            isOpen={this.state.showModal}
-            submitSignup={this.handleSubmitSignup}
-            serverResponse={this.props.signUp}
-            submitSignin={this.handleSubmitSignin}
-            serverRespSignin={this.props.signIn}>
-        </HomeModal>*/}
+                    isOpen={this.state.showModal}
+                    submitSignup={this.handleSubmitSignup}
+                    serverResponse={this.props.signUp}
+                    submitSignin={this.handleSubmitSignin}
+                    serverRespSignin={this.props.signIn}>
+                </HomeModal>*/}
             </div>);
     }
 }

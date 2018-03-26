@@ -16,7 +16,7 @@ class HomePage extends Component {
     render() {
         return (
                 <div className="container">
-                        <h1> Hello Banlgadesh </h1>
+                    <h1> Hello Banlgadesh </h1>
                 </div>
             );
         };
