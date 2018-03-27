@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Header from '../_components/header/header';
+import Header from '../_components/header/Header';
 import { getIsAuthenticated, getSessionUser } from '../_selectors/CommonSelectors';
 import { login, register, logout } from '../_actions/SessionAction';
 import { search } from '../_actions/HeaderAction';

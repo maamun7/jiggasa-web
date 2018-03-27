@@ -88,8 +88,8 @@ class HiModal extends React.Component {
     render() {
         const isOpenSignUpModel = this.state.isOpenSignUpModel;
         return (
-            <div>
-                <button className="btn btn-primary pull-right" onClick={ this.openModal }> Sign </button>
+            <span>
+                <button type="button" onClick={this.openModal } className="btn btn-sm btn-others"> Sign In  </button>
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
@@ -110,7 +110,7 @@ class HiModal extends React.Component {
                                           register={this.props.register} />)}
 
                 </Modal>
-            </div>
+            </span>
         );
     }
 }
