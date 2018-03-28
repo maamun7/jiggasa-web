@@ -23,6 +23,7 @@ class RegisterHtml extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSubmitSignin = this.handleSubmitSignin.bind(this);
+        this.loginModal = this.loginModal.bind(this);
     }
 
     openModal() {
@@ -36,6 +37,11 @@ class RegisterHtml extends React.Component {
 
     closeModal() {
         this.setState({modalIsOpen: false});
+    }
+
+    loginModal() {
+        const { openLoginModal } =  this.props;
+        openLoginModal();
     }
 
     handleInputChange(event) {
@@ -248,6 +254,7 @@ class RegisterHtml extends React.Component {
                         </div>
                     </div>
                 </div>
+                <a onClick={ this.loginModal }> Sign In </a>
             </div>
         );
     }

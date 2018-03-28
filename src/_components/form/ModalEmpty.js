@@ -10,7 +10,7 @@ const customStyles = {
         left              : 0,
         right             : 0,
         bottom            : 0,
-        backgroundColor   : 'rgba(204, 204, 204, 0.50)'
+        backgroundColor   : '#8a8a8a'
     },
 
     content : {
@@ -26,12 +26,12 @@ const customStyles = {
         borderRadius               : '4px',
         outline                    : 'none',
         padding                    : '20px',
-        width                      : '30%',
-        height                     : '350px'
+        width                      : '35%',
+        height                     : '380px'
     }
 };
 
-class HiModal extends React.Component {
+class EmptyModal extends React.Component {
 
     constructor(props) {
         super(props);
@@ -54,6 +54,7 @@ class HiModal extends React.Component {
         this.openRegModal = this.openRegModal.bind(this);
         this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.openLoginModal = this.openLoginModal.bind(this);
     }
 
     openModal() {
@@ -74,16 +75,20 @@ class HiModal extends React.Component {
     }
 
     openRegModal() {
-        this.setState({htmlTemp: <RegisterHtml openModal={this.openModal}
-                                               register={this.props.register} />});
-        this.setState({modalIsOpen: true});
+        this.setState({isOpenSignUpModel: false});
+    }
+
+    openLoginModal() {
+        this.setState({isOpenSignUpModel: true});
     }
 
     closeModal() {
         this.setState({modalIsOpen: false});
     }
 
-    afterOpenModal() { }
+    afterOpenModal() {
+        this.subtitle.style.color = '#000';
+    }
 
     render() {
         const isOpenSignUpModel = this.state.isOpenSignUpModel;
@@ -97,8 +102,9 @@ class HiModal extends React.Component {
                     style={customStyles}
                     contentLabel="Example Modal"
                 >
+                      <h2 ref={subtitle => this.subtitle = subtitle}>This is modal header </h2>
+                      <button className="float-right btn btn-danger" onClick={this.closeModal}>close</button>
 
-                    {/*<div> {this.state.htmlTemp} </div>*/}
                     {isOpenSignUpModel ? (
                     <LoginHtml
                         openRegModal={this.openRegModal}
@@ -107,7 +113,7 @@ class HiModal extends React.Component {
                         loginFail={this.props.loginFail}
                         logout={this.props.logout}
                     /> ) : (<RegisterHtml openModal={this.openModal}
-                                          register={this.props.register} />)}
+                                          openLoginModal={this.openLoginModal}  register={this.props.register}  />)}
 
                 </Modal>
             </span>
@@ -115,4 +121,4 @@ class HiModal extends React.Component {
     }
 }
 
-export default HiModal;
+export default EmptyModal;

@@ -47,7 +47,6 @@ class LoginHtml extends React.Component {
     newRegister() {
         const { openRegModal } =  this.props;
         openRegModal();
-
     }
 
     handleInputChange(event) {
@@ -253,7 +252,7 @@ class LoginHtml extends React.Component {
                         <div className="col-sm-12">
                             <div className="col-padding">
                                 <span className="error-msg"> { this.props.loginFail } </span>
-                                <form onSubmit={this.handleSubmitSignin}>
+                                <form onSubmit={ this.handleSubmitSignin }>
 
                                     <FormGroup controlId="formValidationSuccess1" validationState={ this.state.usernameClass }>
                                         {/* <ControlLabel>Input with error</ControlLabel>*/}
@@ -286,7 +285,7 @@ class LoginHtml extends React.Component {
                     </div>
                 </div>
 
-                <a onClick={this.newRegister}> New register </a>
+                <a onClick={ this.newRegister }> New register </a>
             </div>
         );
     }
