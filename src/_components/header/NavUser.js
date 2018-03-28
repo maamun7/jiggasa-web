@@ -1,5 +1,5 @@
 import React from 'react';
-import NewModal from '../../_components/form/ModalEmpty'
+import OpenModal from '../../_components/form/ModalEmpty'
 
 const NavUser = ({
     isAuthenticated,
@@ -16,13 +16,14 @@ const NavUser = ({
 
     } else {
         return (
-            <NewModal  isAuthenticated={isAuthenticated}
-                       user={user}
-                       login={login}
-                       loginFail={loginFail}
-                       register={register}
-                       logout={logout} />
-
+            <OpenModal
+                isAuthenticated={isAuthenticated}
+                user={user}
+                login={login}
+                loginFail={loginFail}
+                register={register}
+                logout={logout}
+                height="415px"/>
         );
     }
 

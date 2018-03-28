@@ -246,46 +246,36 @@ class LoginHtml extends React.Component {
 
         return (
             <div>
+                <span className="error-msg"> { this.props.loginFail } </span>
+                <form onSubmit={ this.handleSubmitSignin }>
+                    <FormGroup controlId="formValidationSuccess1" validationState={ this.state.usernameClass }>
+                        {/* <ControlLabel>Input with error</ControlLabel>*/}
+                        <FormControl
+                            name="username"
+                            type="text"
+                            value={this.state.username}
+                            onChange={this.handleInputChange}
+                            placeholder="Email" />
+                        <FormControl.Feedback />
+                        <HelpBlock> {this.state.usernameMsg} </HelpBlock>
 
-                <div id="home-modal-container">
-                    <div className="row grid-divider">
-                        <div className="col-sm-12">
-                            <div className="col-padding">
-                                <span className="error-msg"> { this.props.loginFail } </span>
-                                <form onSubmit={ this.handleSubmitSignin }>
+                    </FormGroup>
 
-                                    <FormGroup controlId="formValidationSuccess1" validationState={ this.state.usernameClass }>
-                                        {/* <ControlLabel>Input with error</ControlLabel>*/}
-                                        <FormControl
-                                            name="username"
-                                            type="text"
-                                            value={this.state.username}
-                                            onChange={this.handleInputChange}
-                                            placeholder="Email" />
-                                        <FormControl.Feedback />
-                                        <HelpBlock> {this.state.usernameMsg} </HelpBlock>
+                    <FormGroup controlId="formValidationSuccess1" validationState={ this.state.passClass }>
+                        <FormControl
+                            name="pass"
+                            type="text"
+                            value={this.state.pass}
+                            onChange={this.handleInputChange}
+                            placeholder="Password" />
+                        <FormControl.Feedback />
+                        <HelpBlock> {this.state.passMsg} </HelpBlock>
+                    </FormGroup>
 
-                                    </FormGroup>
+                    <button className="btn btn-success btn-block" block type="submit"> Signin </button>
+                </form>
 
-                                    <FormGroup controlId="formValidationSuccess1" validationState={ this.state.passClass }>
-                                        <FormControl
-                                            name="pass"
-                                            type="text"
-                                            value={this.state.pass}
-                                            onChange={this.handleInputChange}
-                                            placeholder="Password" />
-                                        <FormControl.Feedback />
-                                        <HelpBlock> {this.state.passMsg} </HelpBlock>
-                                    </FormGroup>
-
-                                    <Button bsStyle="success" bsSize="sm" block type="submit"> Signin </Button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <a onClick={ this.newRegister }> New register </a>
+                <a href="#" className="font-twelve-px" onClick={ this.newRegister }> New register </a>
             </div>
         );
     }

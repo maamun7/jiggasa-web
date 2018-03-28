@@ -58,20 +58,8 @@ class EmptyModal extends React.Component {
     }
 
     openModal() {
-
-      /*  let loginHtml = <LoginHtml
-            openRegModal={this.openRegModal}
-            user={this.props.user}
-            login={this.props.login}
-            loginFail={this.props.loginFail}
-            logout={this.props.logout}
-        />;*/
-
-      //  this.setState({htmlTemp: loginHtml});
         this.setState({isOpenSignUpModel: true});
         this.setState({modalIsOpen: true});
-
-      //  console.log("New this.props", this.props);
     }
 
     openRegModal() {
@@ -92,6 +80,10 @@ class EmptyModal extends React.Component {
 
     render() {
         const isOpenSignUpModel = this.state.isOpenSignUpModel;
+        const height = this.props.height;
+        if (height != '') {
+            customStyles.content.height = height;
+        }
         return (
             <span>
                 <button type="button" onClick={this.openModal } className="btn btn-sm btn-others"> Sign In  </button>
@@ -100,21 +92,35 @@ class EmptyModal extends React.Component {
                     onAfterOpen={this.afterOpenModal}
                     onRequestClose={this.closeModal}
                     style={customStyles}
-                    contentLabel="Example Modal"
-                >
-                      <h2 ref={subtitle => this.subtitle = subtitle}>This is modal header </h2>
-                      <button className="float-right btn btn-danger" onClick={this.closeModal}>close</button>
+                    contentLabel="Example Modal">
 
-                    {isOpenSignUpModel ? (
-                    <LoginHtml
-                        openRegModal={this.openRegModal}
-                        user={this.props.user}
-                        login={this.props.login}
-                        loginFail={this.props.loginFail}
-                        logout={this.props.logout}
-                    /> ) : (<RegisterHtml openModal={this.openModal}
-                                          openLoginModal={this.openLoginModal}  register={this.props.register}  />)}
-
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" ref={subtitle => this.subtitle = subtitle}> {this.props.modalHead} </h5>
+                            <button type="button" className="close" onClick={this.closeModal}>
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            {
+                                isOpenSignUpModel ? (
+                                <LoginHtml
+                                    openRegModal={this.openRegModal}
+                                    user={this.props.user}
+                                    login={this.props.login}
+                                    loginFail={this.props.loginFail}
+                                    logout={this.props.logout}
+                                /> ) : (
+                                <RegisterHtml
+                                    openModal={this.openModal}
+                                    openLoginModal={this.openLoginModal}
+                                    register={this.props.register}  />)
+                            }
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" onClick={this.closeModal} className="btn btn-danger">Close</button>
+                        </div>
+                    </div>
                 </Modal>
             </span>
         );
