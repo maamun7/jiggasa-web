@@ -8,6 +8,7 @@ class RegisterHtml extends React.Component {
         super(props);
 
         this.state = {
+            is_admin : 0,
             email: '',
             emailClass   : null,
             emailMsg     : null,
@@ -145,7 +146,9 @@ class RegisterHtml extends React.Component {
                 is_admin : this.state.is_admin
             };
 
-            this.props.submitSignup(inputs);
+            console.log("Submit reg :", inputs);
+
+            this.props.signUp(inputs);
         }
     }
 
@@ -194,7 +197,7 @@ class RegisterHtml extends React.Component {
 
     render() {
 
-        let serverResponse = this.props.serverResponse;
+        let serverResponse = this.props.signUpFailure;
         let message = '';
         let classType = '';
         if (null != serverResponse) {
@@ -205,57 +208,49 @@ class RegisterHtml extends React.Component {
                 classType = 'error-msg';
             }
 
-            console.log("DEBUGG :", serverResponse);
+            console.log("Signup server response :", serverResponse);
         }
 
         return (
             <div>
-                <div id="home-modal-container">
-                    <div className="row grid-divider">
-                        <div className="col-sm-12">
-                            <div className="col-padding">
-                                <form onSubmit={this.handleSubmit}>
-                                    <FormGroup controlId="formValidationSuccess1" validationState={ this.state.nameClass }>
-                                        <FormControl
-                                            name="name"
-                                            type="text"
-                                            value={this.state.name}
-                                            onChange={this.handleInputChange}
-                                            placeholder="Name"/>
-                                        <FormControl.Feedback />
-                                        <HelpBlock> {this.state.nameMsg} </HelpBlock>
-                                    </FormGroup>
+                <form onSubmit={this.handleSubmit}>
+                    <FormGroup controlId="formValidationSuccess1" validationState={ this.state.nameClass }>
+                        <FormControl
+                            name="name"
+                            type="text"
+                            value={this.state.name}
+                            onChange={this.handleInputChange}
+                            placeholder="Name"/>
+                        <FormControl.Feedback />
+                        <HelpBlock> {this.state.nameMsg} </HelpBlock>
+                    </FormGroup>
 
-                                    <FormGroup controlId="formValidationSuccess1" validationState={ this.state.emailClass }>
-                                    {/* <ControlLabel>Input with error</ControlLabel>*/}
-                                        <FormControl
-                                            name="email"
-                                            type="text"
-                                            value={this.state.email}
-                                            onChange={this.handleInputChange}
-                                            placeholder="Email" />
-                                        <FormControl.Feedback />
-                                        <HelpBlock> {this.state.emailMsg} </HelpBlock>
-                                    </FormGroup>
+                    <FormGroup controlId="formValidationSuccess1" validationState={ this.state.emailClass }>
+                    {/* <ControlLabel>Input with error</ControlLabel>*/}
+                        <FormControl
+                            name="email"
+                            type="text"
+                            value={this.state.email}
+                            onChange={this.handleInputChange}
+                            placeholder="Email" />
+                        <FormControl.Feedback />
+                        <HelpBlock> {this.state.emailMsg} </HelpBlock>
+                    </FormGroup>
 
-                                    <FormGroup controlId="formValidationSuccess1" validationState={ this.state.passwordClass }>
-                                        <FormControl
-                                            name="password"
-                                            type="text"
-                                            value={this.state.password}
-                                            onChange={this.handleInputChange}
-                                            placeholder="Password" />
-                                        <FormControl.Feedback />
-                                        <HelpBlock> {this.state.passwordMsg} </HelpBlock>
-                                    </FormGroup>
-                                    <Button bsStyle="success" bsSize="sm" block type="submit"> Signup </Button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                    <FormGroup controlId="formValidationSuccess1" validationState={ this.state.passwordClass }>
+                        <FormControl
+                            name="password"
+                            type="text"
+                            value={this.state.password}
+                            onChange={this.handleInputChange}
+                            placeholder="Password" />
+                        <FormControl.Feedback />
+                        <HelpBlock> {this.state.passwordMsg} </HelpBlock>
+                    </FormGroup>
+                    <button className="btn btn-success btn-block" type="submit"> Signup </button>
+                </form>
+                <a href="#" className="font-twelve-px" onClick={ this.loginModal }> Already has an account ? </a>
                 </div>
-                <a onClick={ this.loginModal }> Sign In </a>
-            </div>
         );
     }
 }

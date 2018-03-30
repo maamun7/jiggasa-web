@@ -1,12 +1,15 @@
 import React from 'react';
-import OpenModal from '../../_components/form/ModalEmpty'
+import AuthModal from '../form/AuthModal'
 
 const NavUser = ({
     isAuthenticated,
     user,
     login,
-    loginFail,
-    register,
+    loginFailure,
+    loginSuccess,
+    signUp,
+    signUpFailure,
+    signUpSuccess,
     logout,
     }) => {
     if (isAuthenticated) {
@@ -16,14 +19,17 @@ const NavUser = ({
 
     } else {
         return (
-            <OpenModal
+            <AuthModal
                 isAuthenticated={isAuthenticated}
                 user={user}
                 login={login}
-                loginFail={loginFail}
-                register={register}
+                loginFailure={loginFailure}
+                loginSuccess={loginSuccess}
+                signUp={signUp}
+                signUpFailure={signUpFailure}
+                signUpSuccess={signUpSuccess}
                 logout={logout}
-                height="415px"/>
+                />
         );
     }
 

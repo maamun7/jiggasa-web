@@ -1,7 +1,7 @@
 export const routerCons = {
     INDEX_PATH: '',
     REGISTER: 'login',
-    LOGIN: 'register',
+    LOGIN: 'signUp',
     TEST: 'test',
     INITIAL_ROUTE: {
         keys: {},

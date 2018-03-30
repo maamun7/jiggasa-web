@@ -6,17 +6,6 @@ import {
     USER_URL,
 } from '../_constants/ApiConstants';
 
-
-const loginSuccess = oauthToken => ({
-    type : types.LOGIN_SUCCESS,
-    oauthToken
-});
-
-const loginFailure = msg => ({
-    type : types.LOGIN_FAILURE,
-    msg
-});
-
 const fetchSessionUserSuccess = (id, entities) => ({
     type: types.FETCH_SESSION_USER_SUCCESS,
     id,
@@ -62,6 +51,17 @@ export const login = (inputs) => async (dispatch) => {
     }
 };
 
+
+const loginSuccess = oauthToken => ({
+    type : types.LOGIN_SUCCESS,
+    oauthToken
+});
+
+const loginFailure = msg => ({
+    type : types.LOGIN_FAILURE,
+    msg
+});
+
 export const logout = () => (dispatch) => {
     const oauth = JSON.parse(localStorage.getItem('auth'));
     if (oauth != null) {
@@ -70,10 +70,29 @@ export const logout = () => (dispatch) => {
     }
 };
 
-export const register = () => (dispatch) => {
-    const oauth = JSON.parse(localStorage.getItem('auth'));
-    if (oauth != null) {
-        dispatch(loginSuccess(oauth.token));
-        dispatch(fetchSessionData(oauth.token));
+
+export const signUp = (inputs) => async (dispatch) => {
+    const response = await callPostApi(`${utils.BASE_HOST}signup`, inputs, false);
+
+    console.log("Server signup res :", response);
+
+
+    const { success, msg } = response;
+    if (success) {
+        dispatch(signUpSuccess({success, msg}));
+    } else {
+        dispatch(signUpFailure({success, msg}));
     }
 };
+
+const signUpFailure = msg => ({
+    type : types.LOGIN_FAILURE,
+    msg
+});
+
+const signUpSuccess = oauthToken => ({
+    type : types.LOGIN_SUCCESS,
+    oauthToken
+});
+
+

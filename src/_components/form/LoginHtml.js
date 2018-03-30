@@ -272,7 +272,7 @@ class LoginHtml extends React.Component {
                         <HelpBlock> {this.state.passMsg} </HelpBlock>
                     </FormGroup>
 
-                    <button className="btn btn-success btn-block" block type="submit"> Signin </button>
+                    <button className="btn btn-success btn-block" type="submit"> Signin </button>
                 </form>
 
                 <a href="#" className="font-twelve-px" onClick={ this.newRegister }> New register </a>

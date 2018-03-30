@@ -80,10 +80,9 @@ class EmptyModal extends React.Component {
 
     render() {
         const isOpenSignUpModel = this.state.isOpenSignUpModel;
-        const height = this.props.height;
-        if (height != '') {
-            customStyles.content.height = height;
-        }
+        customStyles.content.height = isOpenSignUpModel ? '415px' : '500px';
+        const modalHeadTxt = isOpenSignUpModel ? 'User sign in' : 'User sign up';
+
         return (
             <span>
                 <button type="button" onClick={this.openModal } className="btn btn-sm btn-others"> Sign In  </button>
@@ -96,7 +95,7 @@ class EmptyModal extends React.Component {
 
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" ref={subtitle => this.subtitle = subtitle}> {this.props.modalHead} </h5>
+                            <h5 className="modal-title" ref={subtitle => this.subtitle = subtitle}> { modalHeadTxt } </h5>
                             <button type="button" className="close" onClick={this.closeModal}>
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -114,7 +113,10 @@ class EmptyModal extends React.Component {
                                 <RegisterHtml
                                     openModal={this.openModal}
                                     openLoginModal={this.openLoginModal}
-                                    register={this.props.register}  />)
+                                    signUp={this.props.signUp}
+                                    signUpFailure={this.props.signUpFailure}
+                                    signUpSuccess={this.props.signUpSuccess}
+                                />)
                             }
                         </div>
                         <div className="modal-footer">

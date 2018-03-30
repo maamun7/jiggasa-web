@@ -7,8 +7,11 @@ const Header = ({
                     isAuthenticated,
                     user,
                     login,
-                    loginFail,
-                    register,
+                    loginFailure,
+                    loginSuccess,
+                    signUp,
+                    signUpFailure,
+                    signUpSuccess,
                     logout,
                     search,
 
@@ -22,7 +25,16 @@ const Header = ({
                         </div>
                         <div className="header-button col-sm-3 col-md-3 col-lg-3 text-right">
                             <button type="button" className="btn btn-sm btn-success btn-ask-question"> Ask New Question  </button>
-                            <NavUser />
+                            <NavUser
+                                isAuthenticated={isAuthenticated}
+                                user ={user}
+                                login ={login}
+                                loginFail ={loginFail}
+                                signUp ={signUp}
+                                signUpFailure ={signUpFailure}
+                                signUpSuccess ={signUpSuccess}
+                                logout ={logout}
+                            />
                         </div>
                     </div>
                 );

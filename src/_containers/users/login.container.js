@@ -34,7 +34,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        executeSignup: submitedData => dispatch(userAction.register(submitedData))
+        executeSignup: submitedData => dispatch(userAction.signUp(submitedData))
     }
 };
 

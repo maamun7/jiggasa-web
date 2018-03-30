@@ -47,7 +47,7 @@ const login = (user) => {
 };
 
 export const userActions = {
-    register,
+    signUp: register,
     login
 };
 
