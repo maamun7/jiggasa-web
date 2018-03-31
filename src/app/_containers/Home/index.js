@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import * as userAction from '../_actions/user.actions';
-import { getIsAuthenticated, getAuthInfo } from '../_utils/AuthHelper';
+import * as userAction from '../../../_actions/user.actions';
+import { getIsAuthenticated, getAuthInfo } from '../../../_utils/AuthHelper';
 
 class HomeContainer extends React.Component {
     constructor(props) {

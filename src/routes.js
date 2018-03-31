@@ -1,9 +1,9 @@
 import React  from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Home from './_containers/home.container';
-import Signin from './_containers/users/login.container';
-import Signup from './_containers/users/register.container';
-import Modal from './_containers/testModalContainer';
+import Home from './app/_containers/Home.container';
+import Signin from './app/_containers/users/login.container';
+import Signup from './app/_containers/users/register.container';
+import Modal from './app/_containers/Test/testModalContainer';
 //import App from './_components/App';
 
 export default (

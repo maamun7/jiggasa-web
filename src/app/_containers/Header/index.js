@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Header from '../_components/header/Header';
-import { getIsAuthenticated, getSessionUser } from '../_selectors/CommonSelectors';
+import Header from '../../_components/Header/Header';
+import { getIsAuthenticated, getSessionUser } from '../../../_selectors/CommonSelectors';
 import { login, loginFailure, loginSuccess, signUp, signUpFailure, signUpSuccess, logout }
-    from '../_actions/SessionAction';
-import { search } from '../_actions/HeaderAction';
+    from '../../../_actions/SessionAction';
+import { search } from './action';
 
 const HeadContainer = props => <Header {...props} />;
 

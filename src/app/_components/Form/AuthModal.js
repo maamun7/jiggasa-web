@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
-import LoginHtml from '../../_components/form/LoginHtml';
-import RegisterHtml from '../../_components/form/RegisterHtml';
+import LoginHtml from './/LoginHtml';
+import RegisterHtml from './/RegisterHtml';
 
 const customStyles = {
     overlay : {

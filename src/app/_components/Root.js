@@ -1,7 +1,7 @@
 //import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Router from '../_components/Router'
-import Header from '../_containers/HeaderContainer'
+import Header from '../_containers/Header/index'
 
 class Root extends Component {
     componentWillMount() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import TestModal from '../_components/testModal';
+import TestModal from '../../_components/testModal';
 
 class ModalPage extends React.Component {
     constructor(props) {
