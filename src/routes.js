@@ -1,10 +1,10 @@
 import React  from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Home from './app/_containers/Home.container';
-import Signin from './app/_containers/users/login.container';
-import Signup from './app/_containers/users/register.container';
-import Modal from './app/_containers/Test/testModalContainer';
-//import App from './_components/App';
+import Home from './app/containers/Home/';
+import Signin from './app/containers/users/login.container';
+import Signup from './app/containers/users/register.container';
+import Modal from './app/containers/Test/testModalContainer';
+//import App from './components/App';
 
 export default (
     <Switch>

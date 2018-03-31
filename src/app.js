@@ -2,9 +2,9 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import './_assets/styles/scss/style.scss';
+import './assets/styles/scss/style.scss';
 import  configureStore from './configStore';
-import RootContainer from './app/_containers/App/index';
+import RootContainer from './app/containers/App/';
 import  'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
