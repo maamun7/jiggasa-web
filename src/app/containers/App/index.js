@@ -6,7 +6,7 @@ import { initRouter } from '../../../actions/RouterActions';
 import { initAuth } from '../../../actions/SessionAction';
 import HomeContainer from '../Home/index';
 import LoginContainer from '../Test/LoginContainer';
-import TestContainer from '../Test/TestContainer';
+import TestContainer from '../Test/index';
 
 const RootContainer = props => <Root {...props} />;
 

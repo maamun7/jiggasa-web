@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Router from '../Router';
+//import Router from '../Router';
 import Header from '../../containers/Header/index';
-import { BrowserRouter } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
-import Routes from '../../../routes';
-
+import Home from '../../containers/Home/';
+import Test from '../../containers/Test/';
 
 class Root extends Component {
     componentWillMount() {
@@ -19,15 +19,17 @@ class Root extends Component {
         console.log("Root props : ", this.props);
         return (
             <div className="site-wrapper">
-                {/*<Router router={router} routes={routes} />*/}
-                <BrowserRouter history={createHistory()}>
-                    <Routes />
-                </BrowserRouter>
                 <div className="header-wrapper" >
                     <div className="container">
                         <Header/>
                     </div>
                 </div>
+                 <Router history={createHistory()}>
+                     <Switch>
+                         <Route exact path="/" component={Home} />
+                         <Route path="/test" component={Test} />
+                     </Switch>
+                </Router>
                 <div className="footer-wrapper" >
                 </div>
             </div>
