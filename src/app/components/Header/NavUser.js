@@ -4,13 +4,12 @@ import AuthModal from '../Form/AuthModal'
 const NavUser = ({
     isAuthenticated,
     user,
-    login,
-    loginFailure,
-    loginSuccess,
     signUp,
-    signUpFailure,
-    signUpSuccess,
-    logout,
+    signupSuccess,
+    signupFail,
+    login,
+    loginFail,
+    logout
     }) => {
     if (isAuthenticated) {
         return (
@@ -21,14 +20,11 @@ const NavUser = ({
         return (
             <AuthModal
                 isAuthenticated={isAuthenticated}
-                user={user}
-                login={login}
-                loginFailure={loginFailure}
-                loginSuccess={loginSuccess}
-                signUp={signUp}
-                signUpFailure={signUpFailure}
-                signUpSuccess={signUpSuccess}
-                logout={logout}
+                signUp ={signUp}
+                signupSuccess ={signupSuccess}
+                signupFail ={signupFail}
+                login ={login}
+                loginFail ={loginFail}
                 />
         );
     }

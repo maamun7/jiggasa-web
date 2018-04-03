@@ -6,15 +6,13 @@ import NavUser from './NavUser';
 const Header = ({
                     isAuthenticated,
                     user,
+                    signUp,
+                    signupSuccess,
+                    signupFail,
                     login,
                     loginFail,
-                    loginFailure,
-                    loginSuccess,
-                    signUp,
-                    signUpFailure,
-                    signUpSuccess,
                     logout,
-                    search,
+                    search
 
                 }) => (
                     <div className="row">
@@ -29,11 +27,11 @@ const Header = ({
                             <NavUser
                                 isAuthenticated={isAuthenticated}
                                 user ={user}
+                                signUp ={signUp}
+                                signupSuccess ={signupSuccess}
+                                signupFail ={signupFail}
                                 login ={login}
                                 loginFail ={loginFail}
-                                signUp ={signUp}
-                                signUpFailure ={signUpFailure}
-                                signUpSuccess ={signUpSuccess}
                                 logout ={logout}
                             />
                         </div>

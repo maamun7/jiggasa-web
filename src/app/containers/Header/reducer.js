@@ -6,7 +6,7 @@ const initialState = {
     loginFail: null,
 };
 
-const router = (state = initialState, action) => {
+const header = (state = initialState, action) => {
     switch (action.type) {
         case types.LOGIN_SUCCESS:
             return {
@@ -26,9 +26,21 @@ const router = (state = initialState, action) => {
                 id: action.id
             };
 
+        case types.SIGNUP_SUCCESS:
+            return {
+                ...state,
+                signupSuccess: action.msg,
+            };
+
+        case types.SIGNUP_FAILURE:
+            return {
+                ...state,
+                signupFail: action.id
+            };
+
         default:
             return state;
     }
 };
 
-export default router;
+export default header;

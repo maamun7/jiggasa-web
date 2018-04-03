@@ -4,11 +4,11 @@ import { signupReducer, signinReducer } from './reducers/Authentication';
 import router from './reducers/Router';
 import session from './reducers/Session';
 import entities from './reducers/Entities';
+import header from './app/containers/Header/reducer'
 
 export default combineReducers({
-    /*signUp: signupReducer,
-    signIn: signinReducer,*/
     entities,
     router,
-    session
+    session,
+    header
 });

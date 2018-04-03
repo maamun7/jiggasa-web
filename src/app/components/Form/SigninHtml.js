@@ -3,19 +3,20 @@ import { Button, FormGroup, ControlLabel, FormControl, HelpBlock }
     from 'react-bootstrap';
 import Validator from 'validatorjs';
 
-class RegisterHtml extends React.Component {
+class SigninHtml extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            is_admin : 0,
             email: '',
             emailClass   : null,
             emailMsg     : null,
 
             password: '',
             passwordClass   : null,
-            passwordMsg     : null
+            passwordMsg     : null,
+
+           loginFail     : null
         };
 
         this.openModal = this.openModal.bind(this);
@@ -24,7 +25,8 @@ class RegisterHtml extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSubmitSignin = this.handleSubmitSignin.bind(this);
-        this.loginModal = this.loginModal.bind(this);
+        this.newSignUp = this.newSignUp.bind(this);
+        this.getLoginFailText = this.getLoginFailText.bind(this);
     }
 
     openModal() {
@@ -40,9 +42,9 @@ class RegisterHtml extends React.Component {
         this.setState({modalIsOpen: false});
     }
 
-    loginModal() {
-        const { openLoginModal } =  this.props;
-        openLoginModal();
+    newSignUp() {
+        const { openSignUpModal } =  this.props;
+        openSignUpModal();
     }
 
     handleInputChange(event) {
@@ -69,6 +71,21 @@ class RegisterHtml extends React.Component {
             this.singleValidation('password', target.value, 'required|min:6|alpha_num|max:100');
         }
 
+        /// For signin
+
+        if (target.name === 'username') {
+            this.setState({
+                username: target.value
+            });
+            this.singleValidation('username', target.value, 'required|email');
+        }
+
+        if (target.name === 'pass') {
+            this.setState({
+                pass: target.value
+            });
+            this.singleValidation('pass', target.value, 'required|min:6|alpha_num|max:100');
+        }
     }
 
     singleValidation(stateName, value, rulesStr) {
@@ -145,10 +162,7 @@ class RegisterHtml extends React.Component {
                 password : this.state.password,
                 is_admin : this.state.is_admin
             };
-
-            console.log("Submit reg :", inputs);
-
-            this.props.signUp(inputs);
+            this.props.login(inputs);
         }
     }
 
@@ -187,17 +201,35 @@ class RegisterHtml extends React.Component {
             }
         }
         else {
+            
             let inputs = {
                 email : this.state.username,
                 password : this.state.pass
             };
-            this.props.submitSignin(inputs);
+
+            this.props.login(inputs);
         }
+    }
+
+    getLoginFailText(){
+
+        this.setState({
+            'loginFail': this.props.loginFail
+        });
+    }
+
+    componentWillReceiveProps(newProps)
+    {
+
+        console.log("componentWillReceiveProps", newProps);
+        this.setState({
+            'loginFail': this.props.loginFail
+        });
     }
 
     render() {
 
-        let serverResponse = this.props.signUpFailure;
+        let serverResponse = this.props.serverResponse;
         let message = '';
         let classType = '';
         if (null != serverResponse) {
@@ -207,52 +239,44 @@ class RegisterHtml extends React.Component {
             } else {
                 classType = 'error-msg';
             }
-
-            console.log("Signup server response :", serverResponse);
         }
+
 
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <FormGroup controlId="formValidationSuccess1" validationState={ this.state.nameClass }>
+                <span className="error-msg"> { this.props.loginFail } </span>
+                <form onSubmit={ this.handleSubmitSignin }>
+                    <FormGroup controlId="formValidationSuccess1" validationState={ this.state.usernameClass }>
+                        {/* <ControlLabel>Input with error</ControlLabel>*/}
                         <FormControl
-                            name="name"
+                            name="username"
                             type="text"
-                            value={this.state.name}
-                            onChange={this.handleInputChange}
-                            placeholder="Name"/>
-                        <FormControl.Feedback />
-                        <HelpBlock> {this.state.nameMsg} </HelpBlock>
-                    </FormGroup>
-
-                    <FormGroup controlId="formValidationSuccess1" validationState={ this.state.emailClass }>
-                    {/* <ControlLabel>Input with error</ControlLabel>*/}
-                        <FormControl
-                            name="email"
-                            type="text"
-                            value={this.state.email}
+                            value={this.state.username}
                             onChange={this.handleInputChange}
                             placeholder="Email" />
                         <FormControl.Feedback />
-                        <HelpBlock> {this.state.emailMsg} </HelpBlock>
+                        <HelpBlock> {this.state.usernameMsg} </HelpBlock>
+
                     </FormGroup>
 
-                    <FormGroup controlId="formValidationSuccess1" validationState={ this.state.passwordClass }>
+                    <FormGroup controlId="formValidationSuccess1" validationState={ this.state.passClass }>
                         <FormControl
-                            name="password"
+                            name="pass"
                             type="text"
-                            value={this.state.password}
+                            value={this.state.pass}
                             onChange={this.handleInputChange}
                             placeholder="Password" />
                         <FormControl.Feedback />
-                        <HelpBlock> {this.state.passwordMsg} </HelpBlock>
+                        <HelpBlock> {this.state.passMsg} </HelpBlock>
                     </FormGroup>
-                    <button className="btn btn-success btn-block" type="submit"> Signup </button>
+
+                    <button className="btn btn-success btn-block" type="submit"> Sign in </button>
                 </form>
-                <a href="#" className="font-twelve-px" onClick={ this.loginModal }> Already has an account ? </a>
-                </div>
+
+                <a href="#" className="font-twelve-px" onClick={ this.newSignUp }> New sign up ? </a>
+            </div>
         );
     }
 }
 
-export default RegisterHtml;
+export default SigninHtml;

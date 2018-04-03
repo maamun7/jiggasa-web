@@ -12,17 +12,15 @@ const mapStateToProps = (state) => {
     return {
         isAuthenticated: getIsAuthenticated(state),
         user: getSessionUser(state),
-        loginFail: state.session.loginFail
+        signupSuccess: state.header.signupSuccess,
+        signupFail: state.header.signupFail,
+        loginFail: state.header.loginFail
     }
 };
 
 export default connect(mapStateToProps, {
-    login,
-    loginFailure,
-    loginSuccess,
     signUp,
-    signUpFailure,
-    signUpSuccess,
+    login,
     logout,
-    search,
+    search
 })(HeadContainer);

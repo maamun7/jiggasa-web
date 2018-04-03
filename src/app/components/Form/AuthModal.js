@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
-import LoginHtml from './/LoginHtml';
-import RegisterHtml from './/RegisterHtml';
+import SigninHtml from './SigninHtml';
+import SignupHtml from './SignupHtml';
 
 const customStyles = {
     overlay : {
@@ -31,7 +31,7 @@ const customStyles = {
     }
 };
 
-class EmptyModal extends React.Component {
+class AuthModal extends React.Component {
 
     constructor(props) {
         super(props);
@@ -51,23 +51,23 @@ class EmptyModal extends React.Component {
         };
 
         this.openModal = this.openModal.bind(this);
-        this.openRegModal = this.openRegModal.bind(this);
         this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
-        this.openLoginModal = this.openLoginModal.bind(this);
+        this.openSignUpModal = this.openSignUpModal.bind(this);
+        this.openSignInModal = this.openSignInModal.bind(this);
     }
 
     openModal() {
-        this.setState({isOpenSignUpModel: true});
+        this.setState({isOpenSignUpModel: false});
         this.setState({modalIsOpen: true});
     }
 
-    openRegModal() {
-        this.setState({isOpenSignUpModel: false});
+    openSignUpModal() {
+        this.setState({isOpenSignUpModel: true});
     }
 
-    openLoginModal() {
-        this.setState({isOpenSignUpModel: true});
+    openSignInModal() {
+        this.setState({isOpenSignUpModel: false});
     }
 
     closeModal() {
@@ -80,8 +80,8 @@ class EmptyModal extends React.Component {
 
     render() {
         const isOpenSignUpModel = this.state.isOpenSignUpModel;
-        customStyles.content.height = isOpenSignUpModel ? '415px' : '500px';
-        const modalHeadTxt = isOpenSignUpModel ? 'User sign in' : 'User sign up';
+        customStyles.content.height = isOpenSignUpModel ? '512px' : '428px';
+        const modalHeadTxt = isOpenSignUpModel ? 'User sign up' : 'User sign in';
 
         return (
             <span>
@@ -103,20 +103,21 @@ class EmptyModal extends React.Component {
                         <div className="modal-body">
                             {
                                 isOpenSignUpModel ? (
-                                <LoginHtml
-                                    openRegModal={this.openRegModal}
-                                    user={this.props.user}
-                                    login={this.props.login}
-                                    loginFail={this.props.loginFail}
-                                    logout={this.props.logout}
-                                /> ) : (
-                                <RegisterHtml
-                                    openModal={this.openModal}
-                                    openLoginModal={this.openLoginModal}
-                                    signUp={this.props.signUp}
-                                    signUpFailure={this.props.signUpFailure}
-                                    signUpSuccess={this.props.signUpSuccess}
-                                />)
+                                    <SignupHtml
+                                        openModal={this.openModal}
+                                        openSignInModal={this.openSignInModal}
+                                        signUp={this.props.signUp}
+                                        signupSuccess={this.props.signupSuccess}
+                                        signupFail={this.props.signupFail}
+                                        />
+                                 ) : (    
+                                    <SigninHtml
+                                        openSignUpModal={this.openSignUpModal}
+                                        user={this.props.user}
+                                        login={this.props.login}
+                                        loginFail={this.props.loginFail}
+                                        />
+                                )
                             }
                         </div>
                         <div className="modal-footer">
@@ -129,4 +130,4 @@ class EmptyModal extends React.Component {
     }
 }
 
-export default EmptyModal;
+export default AuthModal;
