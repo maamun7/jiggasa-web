@@ -5,7 +5,7 @@ const NavUser = ({
     isAuthenticated,
     user,
     signUp,
-    signupSuccess,
+    signupResponse,
     signupFail,
     login,
     loginFail,
@@ -21,7 +21,7 @@ const NavUser = ({
             <AuthModal
                 isAuthenticated={isAuthenticated}
                 signUp ={signUp}
-                signupSuccess ={signupSuccess}
+                signupResponse ={signupResponse}
                 signupFail ={signupFail}
                 login ={login}
                 loginFail ={loginFail}

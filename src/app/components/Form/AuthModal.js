@@ -82,7 +82,6 @@ class AuthModal extends React.Component {
         const isOpenSignUpModel = this.state.isOpenSignUpModel;
         customStyles.content.height = isOpenSignUpModel ? '512px' : '428px';
         const modalHeadTxt = isOpenSignUpModel ? 'User sign up' : 'User sign in';
-
         return (
             <span>
                 <button type="button" onClick={this.openModal } className="btn btn-sm btn-others"> Sign In  </button>
@@ -107,7 +106,7 @@ class AuthModal extends React.Component {
                                         openModal={this.openModal}
                                         openSignInModal={this.openSignInModal}
                                         signUp={this.props.signUp}
-                                        signupSuccess={this.props.signupSuccess}
+                                        signupResponse={this.props.signupResponse}
                                         signupFail={this.props.signupFail}
                                         />
                                  ) : (    

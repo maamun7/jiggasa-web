@@ -23,7 +23,6 @@ class SignupHtml extends React.Component {
         this.closeModal = this.closeModal.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleSubmitSignin = this.handleSubmitSignin.bind(this);
         this.signInModal = this.signInModal.bind(this);
     }
 
@@ -149,63 +148,13 @@ class SignupHtml extends React.Component {
         }
     }
 
-    handleSubmitSignin(e) {
-        e.preventDefault();
-
-        let validation = new Validator({
-            username: this.state.username,
-            pass: this.state.pass
-        }, {
-            username: 'required|email',
-            pass: 'required|min:6|alpha_num|max:100'
-        },{
-            "required.username": "Email field is required !",
-            "email.username": "Email field must be valid email !",
-            "required.pass": "Password field is required !",
-            "min.pass": "Password minimum 6 characters !",
-            "max.pass": "Password maximum 100 characters !"
-        });
-
-        if (validation.fails()) {
-
-
-            if (validation.errors.first('username')) {
-                this.setState({
-                    'usernameClass' : 'error',
-                    'usernameMsg' : validation.errors.first('username')
-                });
-            }
-
-            if (validation.errors.first('pass')) {
-                this.setState({
-                    'passClass' : 'error',
-                    'passMsg' : validation.errors.first('pass')
-                });
-            }
-        }
-        else {
-            let inputs = {
-                email : this.state.username,
-                password : this.state.pass
-            };
-            this.props.submitSignin(inputs);
-        }
-    }
-
     render() {
-
-        let serverResponse = this.props.signUpFailure;
-        let message = '';
-        let classType = '';
-        if (null != serverResponse) {
-            message = serverResponse.res.msg;
-            if (serverResponse.res.success) {
-                classType = 'success-msg';
-            } else {
-                classType = 'error-msg';
+        let response = this.props.signupResponse;
+        if (null != response) {
+            if (response.success) {
+                console.log('DEBUGG :', response);
+                this.signInModal();
             }
-
-            console.log("Signup server response :", serverResponse);
         }
 
         return (

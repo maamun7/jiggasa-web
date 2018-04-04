@@ -7,7 +7,7 @@ const Header = ({
                     isAuthenticated,
                     user,
                     signUp,
-                    signupSuccess,
+                    signupResponse,
                     signupFail,
                     login,
                     loginFail,
@@ -28,7 +28,7 @@ const Header = ({
                                 isAuthenticated={isAuthenticated}
                                 user ={user}
                                 signUp ={signUp}
-                                signupSuccess ={signupSuccess}
+                                signupResponse ={signupResponse}
                                 signupFail ={signupFail}
                                 login ={login}
                                 loginFail ={loginFail}

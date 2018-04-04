@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes';
-import { callGetApi, callPostApi } from '../utils/ApiUtils';
+import { callGetApi, callPostApi } from '../utils/AppUtils';
 import { userSchema } from '../constants/Schemas';
 import * as utils from '../utils/CommonUtils'
 import {
@@ -71,28 +71,5 @@ export const logout = () => (dispatch) => {
 };
 
 
-export const signUp = (inputs) => async (dispatch) => {
-    const response = await callPostApi(`${utils.BASE_HOST}signup`, inputs, false);
-
-    console.log("Server signup res :", response);
-
-
-    const { success, msg } = response;
-    if (success) {
-        dispatch(signUpSuccess({success, msg}));
-    } else {
-        dispatch(signUpFailure({success, msg}));
-    }
-};
-
-const signUpFailure = msg => ({
-    type : types.LOGIN_FAILURE,
-    msg
-});
-
-const signUpSuccess = oauthToken => ({
-    type : types.LOGIN_SUCCESS,
-    oauthToken
-});
 
 
