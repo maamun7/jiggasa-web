@@ -24,9 +24,7 @@ class SigninHtml extends React.Component {
         this.closeModal = this.closeModal.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleSubmitSignin = this.handleSubmitSignin.bind(this);
         this.newSignUp = this.newSignUp.bind(this);
-        this.getLoginFailText = this.getLoginFailText.bind(this);
     }
 
     openModal() {
@@ -124,52 +122,6 @@ class SigninHtml extends React.Component {
         e.preventDefault();
 
         let validation = new Validator({
-            name: this.state.name,
-            email: this.state.email,
-            password: this.state.password,
-        }, {
-            name: 'required|min:3|max:50',
-            email: 'required|email',
-            password: 'required|min:6|alpha_num|max:100',
-        });
-
-        if (validation.fails()) {
-            if (validation.errors.first('name')) {
-                this.setState({
-                    'nameClass' : 'error',
-                    'nameMsg' : validation.errors.first('name')
-                });
-            }
-
-            if (validation.errors.first('email')) {
-                this.setState({
-                    'emailClass' : 'error',
-                    'emailMsg' : validation.errors.first('email')
-                });
-            }
-
-            if (validation.errors.first('password')) {
-                this.setState({
-                    'passwordClass' : 'error',
-                    'passwordMsg' : validation.errors.first('password')
-                });
-            }
-        }
-        else {
-            let inputs = {
-                name : this.state.name,
-                email : this.state.email,
-                password : this.state.password,
-                is_admin : this.state.is_admin
-            };
-            this.props.login(inputs);
-        }
-    }
-
-    handleSubmitSignin(e) {
-        e.preventDefault();
-
-        let validation = new Validator({
             username: this.state.username,
             pass: this.state.pass
         }, {
@@ -207,45 +159,23 @@ class SigninHtml extends React.Component {
                 password : this.state.pass
             };
 
-            this.props.login(inputs);
+            this.props.signIn(inputs);
         }
-    }
-
-    getLoginFailText(){
-
-        this.setState({
-            'loginFail': this.props.loginFail
-        });
-    }
-
-    componentWillReceiveProps(newProps)
-    {
-
-        console.log("componentWillReceiveProps", newProps);
-        this.setState({
-            'loginFail': this.props.loginFail
-        });
     }
 
     render() {
-
-        let serverResponse = this.props.serverResponse;
-        let message = '';
-        let classType = '';
-        if (null != serverResponse) {
-            message = serverResponse.res.msg;
-            if (serverResponse.res.success) {
-                classType = 'success-msg';
-            } else {
-                classType = 'error-msg';
+        let response = this.props.signupResponse;
+        let signUpMsg = '';
+        if (null != response) {
+            if (response.success) {
+                signUpMsg = `${response.msg}, Please sign in !`;
             }
         }
-
-
         return (
             <div>
-                <span className="error-msg"> { this.props.loginFail } </span>
-                <form onSubmit={ this.handleSubmitSignin }>
+                <span className="success-msg"> { signUpMsg } </span>
+                <span className="error-msg"> { this.props.signinFail } </span>
+                <form onSubmit={ this.handleSubmit }>
                     <FormGroup controlId="formValidationSuccess1" validationState={ this.state.usernameClass }>
                         {/* <ControlLabel>Input with error</ControlLabel>*/}
                         <FormControl

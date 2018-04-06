@@ -112,9 +112,10 @@ class AuthModal extends React.Component {
                                  ) : (    
                                     <SigninHtml
                                         openSignUpModal={this.openSignUpModal}
+                                        signupResponse={this.props.signupResponse}
                                         user={this.props.user}
-                                        login={this.props.login}
-                                        loginFail={this.props.loginFail}
+                                        signIn={this.props.signIn}
+                                        signinFail={this.props.signinFail}
                                         />
                                 )
                             }

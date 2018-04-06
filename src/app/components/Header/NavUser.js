@@ -7,9 +7,9 @@ const NavUser = ({
     signUp,
     signupResponse,
     signupFail,
-    login,
-    loginFail,
-    logout
+    signIn,
+    signinFail,
+    signOut
     }) => {
     if (isAuthenticated) {
         return (
@@ -23,8 +23,8 @@ const NavUser = ({
                 signUp ={signUp}
                 signupResponse ={signupResponse}
                 signupFail ={signupFail}
-                login ={login}
-                loginFail ={loginFail}
+                signIn ={signIn}
+                signinFail ={signinFail}
                 />
         );
     }

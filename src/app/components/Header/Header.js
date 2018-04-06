@@ -9,11 +9,10 @@ const Header = ({
                     signUp,
                     signupResponse,
                     signupFail,
-                    login,
-                    loginFail,
-                    logout,
+                    signIn,
+                    signinFail,
+                    signOut,
                     search
-
                 }) => (
                     <div className="row">
                         <div className="header-logo col-sm-2 col-md-2 col-lg-2">
@@ -30,9 +29,9 @@ const Header = ({
                                 signUp ={signUp}
                                 signupResponse ={signupResponse}
                                 signupFail ={signupFail}
-                                login ={login}
-                                loginFail ={loginFail}
-                                logout ={logout}
+                                signIn ={signIn}
+                                signinFail ={signinFail}
+                                signOut ={signOut}
                             />
                         </div>
                     </div>

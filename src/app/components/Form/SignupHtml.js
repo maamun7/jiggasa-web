@@ -152,14 +152,13 @@ class SignupHtml extends React.Component {
         let response = this.props.signupResponse;
         if (null != response) {
             if (response.success) {
-                console.log('DEBUGG :', response);
                 this.signInModal();
             }
         }
 
         return (
             <div>
-                 <span className="error-msg"> { this.props.signupFail } </span>
+                <span className="error-msg"> { this.props.signupFail } </span>
                 <form onSubmit={this.handleSubmit}>
                     <FormGroup controlId="formValidationSuccess1" validationState={ this.state.nameClass }>
                         <FormControl

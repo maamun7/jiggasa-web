@@ -1,17 +1,13 @@
 import { createSelector } from 'reselect';
 // entities selectors
-export const getEntities = state => state.entities;
+//export const getEntities = state => state.entities;
 
 // session selectors
-export const getOauthToken = state => state.session.oauthToken;
-export const getSessionId = state => state.session.id;
+export const getOauthToken = state => state.header.oauthToken;
+export const getSessionId = state => state.header.id;
 export const getSessionUser = createSelector(
     getSessionId,
-    getEntities,
-    (id, entities) => (id in entities.users
-            ? entities.users[id]
-            : null
-    ),
+    (id) => id
 );
 export const getIsAuthenticated = createSelector(
     getOauthToken,

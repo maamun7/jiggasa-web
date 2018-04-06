@@ -6,7 +6,7 @@ const initialState = {
     signupResponse: null,
     signupSuccess: null,
     signupFail: null,
-    loginFail: null,
+    signinFail: null,
 };
 
 const header = (state = initialState, action) => {
@@ -27,16 +27,16 @@ const header = (state = initialState, action) => {
                 ...state,
                 signupFail: action.msg
             };
-        case consts.LOGIN_SUCCESS:
+        case consts.SIGNIN_SUCCESS:
             return {
                 ...state,
                 oauthToken: action.oauthToken,
             };
 
-        case consts.LOGIN_FAILURE:
+        case consts.SIGNIN_FAILURE:
             return {
                 ...state,
-                loginFail: action.msg,
+                signinFail: action.msg,
             };
 
         case consts.FETCH_SESSION_USER_SUCCESS:
