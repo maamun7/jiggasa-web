@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Root from '../../components/App/index';
-import { initAuth } from '../../containers/Header/action';
+import { initAuth } from '../../containers/App/action';
 
 const RootContainer = props => <Root {...props} />;
 
