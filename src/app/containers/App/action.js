@@ -10,13 +10,13 @@ const fetchSessionUserSuccess = (id, entities) => ({
 
 const fetchSessionUser = oauthToken => async (dispatch) => {
     const response = await callGetApi(consts.OAUTH_URL);
+    console.log('Check auth :', response);
     const { success, id, name, email  } = response;
     if (success) {
         const entities = {
             name: name,
             email: email
         };
-
         dispatch(fetchSessionUserSuccess(id, entities));
     }
 };
@@ -28,6 +28,7 @@ const fetchSessionData = oauthToken => (dispatch) => {
 export const initAuth = () => (dispatch) => {
     const oauth = JSON.parse(localStorage.getItem('auth'));
     if (oauth != null) {
+        console.log('oauth from locals:', oauth);
         dispatch(signinSuccess(oauth.token));
         dispatch(fetchSessionData(oauth.token));
     }
@@ -35,7 +36,6 @@ export const initAuth = () => (dispatch) => {
 
 export const signIn = (inputs) => async (dispatch) => {
     const response = await callPostApi(consts.SIGNIN_URL, inputs, false);
-    console.log('LOGIN SERVER RES :', response);
     const { success } = response;
     if (success) {
         const { token } = response;

@@ -15,7 +15,6 @@ const NavUser = ({
         return (
             null
         );
-
     } else {
         return (
             <AuthModal

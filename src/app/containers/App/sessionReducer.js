@@ -23,7 +23,8 @@ const session = (state = initialState, action) => {
         case consts.FETCH_SESSION_USER_SUCCESS:
             return {
                 ...state,
-                id: action.id
+                id: action.id,
+                entities: action.entities
             };
 
         default:
