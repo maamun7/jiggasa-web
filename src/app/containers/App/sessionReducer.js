@@ -3,7 +3,7 @@ import * as consts from './constants';
 const initialState = {
     id: null,
     oauthToken: null,
-    signinFail: null,
+    signinFail: null
 };
 
 const session = (state = initialState, action) => {
@@ -23,8 +23,7 @@ const session = (state = initialState, action) => {
         case consts.FETCH_SESSION_USER_SUCCESS:
             return {
                 ...state,
-                id: action.id,
-                entities: action.entities
+                id: action.id
             };
 
         default:

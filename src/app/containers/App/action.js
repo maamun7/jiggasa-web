@@ -5,18 +5,14 @@ import * as consts from './constants';
 const fetchSessionUserSuccess = (id, entities) => ({
     type: consts.FETCH_SESSION_USER_SUCCESS,
     id,
-    entities,
+    entities
 });
 
 const fetchSessionUser = oauthToken => async (dispatch) => {
     const response = await callGetApi(consts.OAUTH_URL);
     console.log('Check auth :', response);
-    const { success, id, name, email  } = response;
+    const { success, id, entities  } = response;
     if (success) {
-        const entities = {
-            name: name,
-            email: email
-        };
         dispatch(fetchSessionUserSuccess(id, entities));
     }
 };
