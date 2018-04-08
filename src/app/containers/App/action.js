@@ -22,11 +22,10 @@ const fetchSessionData = oauthToken => (dispatch) => {
 };
 
 export const initAuth = () => (dispatch) => {
-    const oauth = JSON.parse(localStorage.getItem('auth'));
-    if (oauth != null) {
-        console.log('oauth from locals:', oauth);
-        dispatch(signinSuccess(oauth.token));
-        dispatch(fetchSessionData(oauth.token));
+    const token = JSON.parse(localStorage.getItem('oauth'));
+    if (token != null) {
+        dispatch(signinSuccess(token));
+        dispatch(fetchSessionData(token));
     }
 };
 
@@ -37,7 +36,6 @@ export const signIn = (inputs) => async (dispatch) => {
         const { token } = response;
         //Save token to local storage
         localStorage.setItem('oauth', JSON.stringify(token));
-
         dispatch(signinSuccess(token));
         dispatch(fetchSessionData(token));
     } else {
@@ -56,10 +54,11 @@ const signinFailure = msg => ({
     msg
 });
 
+const getSignOut = () => ({
+    type : consts.SIGNOUT
+});
+
 export const signOut = () => (dispatch) => {
-    const oauth = JSON.parse(localStorage.getItem('auth'));
-    if (oauth != null) {
-        dispatch(signinSuccess(oauth.token));
-        dispatch(fetchSessionData(oauth.token));
-    }
+    localStorage.setItem('oauth', JSON.stringify(''));
+    dispatch(getSignOut());
 };

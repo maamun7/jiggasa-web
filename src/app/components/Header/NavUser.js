@@ -1,5 +1,6 @@
 import React from 'react';
-import AuthModal from '../Form/AuthModal'
+import AuthModal from '../Form/AuthModal';
+import SessionInfo from '../Header/SessionInfo';
 
 const NavUser = ({
     isAuthenticated,
@@ -13,7 +14,10 @@ const NavUser = ({
     }) => {
     if (isAuthenticated) {
         return (
-            null
+            <SessionInfo 
+                user ={user}
+                signOut ={signOut}
+                />
         );
     } else {
         return (
