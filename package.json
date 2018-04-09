@@ -46,7 +46,6 @@
     "react-transform-hmr": "^1.0.4",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
-    "tether": "^1.4.3",
     "url-loader": "^0.5.9",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.11.2"
@@ -80,7 +79,6 @@
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.1.0",
     "reselect": "^3.0.1",
-    "resolve-url-loader": "^2.3.0",
     "validatorjs": "^3.13.5"
   }
 }

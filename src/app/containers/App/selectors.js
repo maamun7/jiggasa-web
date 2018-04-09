@@ -14,17 +14,3 @@ export const getIsAuthenticated = createSelector(
     getSessionUser,
     (oauthToken, user) => Boolean(oauthToken && user),
 );
-
-// export const getSessionUser = createSelector(
-//     getSessionId,
-//     getEntities,
-//     (id, entities) => (id in entities.users
-//       ? entities.users[id]
-//       : null
-//     ),
-//   );
-//   export const getIsAuthenticated = createSelector(
-//     getOauthToken,
-//     getSessionUser,
-//     (oauthToken, user) => Boolean(oauthToken && user),
-//   );

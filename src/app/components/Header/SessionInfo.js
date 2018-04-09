@@ -14,14 +14,13 @@ class SessionInfo extends Component {
 
     render() {
         return (
-            <div class="dropdown">
-                <div class="dropdown-toggle" type="button" data-toggle="dropdown">
+            <div className="dropdown">
+                <button className="btn btn-sm btn-others dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     { this.props.user.name }
-                    <span class="caret"></span>
+                </button>
+                <div className="dropdown-menu">
+                    <a href="#" className="dropdown-item" onClick={this.signOut} > Sign out </a>
                 </div>
-                <ul class="dropdown-menu">
-                    <li> <span onClick={this.signOut} > Sign out </span></li>
-                </ul>
             </div>
         );
     }
