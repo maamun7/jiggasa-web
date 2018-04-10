@@ -16,11 +16,11 @@ const PlainHeader = ({
     search
     }) => {
         return (
-            <span>
-                <div className="header-search col-sm-7 col-md-7 col-lg-7">
+            <div>
+                <div className="header-search col-sm-8 col-md-8 col-lg-8">
                     <NavSearch search={search}  />
                 </div>
-                <div className="header-button col-sm-3 col-md-3 col-lg-3 text-right">
+                <div className="header-button col-sm-4 col-md-4 col-lg-4">
                     <button type="button" className="btn btn-sm btn-success btn-ask-question"> Ask New Question  </button>
                     <AuthModal
                         isAuthenticated={isAuthenticated}
@@ -31,7 +31,7 @@ const PlainHeader = ({
                         signinFail ={signinFail}
                         />
                 </div>
-            </span>
+            </div>
         );
 };
 

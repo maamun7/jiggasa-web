@@ -18,25 +18,26 @@ const Header = ({
                         <div className="header-logo col-sm-2 col-md-2 col-lg-2">
                             <span className="logo-text">  জিজ্ঞাসা..? </span>
                         </div>
-                        <div className="col-sm-2 col-md-2 col-lg-2">
-                            if (isAuthenticated) {
-                                <SessionHeader            
-                                    isAuthenticated={isAuthenticated}
-                                    user ={user}
-                                    search ={search}
-                                    />
-                            } else {
-                                <PlainHeader   
-                                    isAuthenticated={isAuthenticated} 
-                                    signUp ={signUp}
-                                    signupResponse ={signupResponse}
-                                    signupFail ={signupFail}
-                                    signIn ={signIn}
-                                    signinFail ={signinFail}
-                                    signOut ={signOut} 
-                                    search ={search}
-                                    />
-                            }
+                        <div className="col-sm-10 col-md-10 col-lg-10">
+                                { isAuthenticated ? (
+                                    <SessionHeader            
+                                        isAuthenticated={isAuthenticated}
+                                        user ={user}
+                                        search ={search}
+                                        />
+                                    ) : (
+                                    <PlainHeader   
+                                        isAuthenticated={isAuthenticated} 
+                                        signUp ={signUp}
+                                        signupResponse ={signupResponse}
+                                        signupFail ={signupFail}
+                                        signIn ={signIn}
+                                        signinFail ={signinFail}
+                                        signOut ={signOut} 
+                                        search ={search}
+                                        />
+                                    )
+                                }
                         </div>
                     </div>
                 );
