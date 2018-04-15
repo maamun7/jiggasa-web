@@ -16,27 +16,31 @@ const SessionHeader = ({
     search
     }) => {
         return (
-            <div className="row">
-                <div className="col-sm-3 col-md-3 col-lg-3">
-                    
-                </div>
-                <div className="header-search col-sm-4 col-md-4 col-lg-4">
+            <span>
+                <ul className="nav navbar-nav">
+                    <li className="current_nav_link"><a href="#"><i class="fa fa-home"></i> Home </a></li>
+                    <li className=""><a href="#"><i class="fa fa-edit"></i> Answer</a></li>
+                    <li className=""><a href="#"><i class="fa fa-bell"></i> <span>Notification</span></a></li>
+                </ul>
+                <div className="col-sm-5 col-md-5 pull-left">
                     <NavSearch search={search}  />
                 </div>
-                <div className="col-sm-4 col-md-5 col-lg-5">
-                    <button type="button" className="btn btn-sm btn-success btn-ask-question"> Ask New Question  </button>
-                    <NavUser
-                        isAuthenticated={isAuthenticated}
-                        user ={user}
-                        signUp ={signUp}
-                        signupResponse ={signupResponse}
-                        signupFail ={signupFail}
-                        signIn ={signIn}
-                        signinFail ={signinFail}
-                        signOut ={signOut}
-                    />
+                <div className="col-sm-3 col-md-3 pull-right custom-nav-right">
+                    <ul className="nav navbar-nav navbar-right">
+                        <li className="dropdown user_image">
+                            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="https://lh3.googleusercontent.com/-m9ETQ1gFbG8/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWADq_WQAX94qs5ikBhhTLAxRdI_nA/s32-c-mo/photo.jpg" /></a>
+                            <ul className="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="index_logout.html">Logout</a></li>
+                            </ul>
+                        </li>
+                        <li className=""><button className="btn btn-sm btn-danger navbar-btn">Add Question</button></li>
+                    </ul>
                 </div>
-            </div>
+            </span>
         );
 };
 

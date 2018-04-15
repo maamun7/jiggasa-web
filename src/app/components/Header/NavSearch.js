@@ -12,7 +12,14 @@ class NavSearch extends React.Component {
 
     render() {
         return (
-            <input className="form-control form-control-dark w-100 input-search-field" type="text" placeholder="Search" onKeyPress={this.onKeyPress} />
+            <form className="navbar-form navbar-left">
+                <div className="form-group" style={ { display:"inline"} }>
+                    <div className="input-group" style={ { display:"table"} }>
+                        <span className="input-group-addon" style={ { width:"1%"} }><span className="fa fa-search"></span></span>
+                        <input className="form-control" name="search" placeholder="Search Here" autocomplete="off" autofocus="autofocus" type="text" />
+                    </div>
+                </div>
+            </form>
         );
     }
 }

@@ -12,14 +12,12 @@ class Root extends Component {
     }
 
     render() {
-        return (
-            <div className="site-wrapper">
-                <div className="header-wrapper" >
-                    <div className="container">
-                        <Header/>
-                    </div>
-                </div>
-                 <Router history={createHistory()}>
+        return (  
+            <div>
+                <nav className="navbar navbar-default custom_nav">
+                    <Header/>
+                </nav>
+                <Router history={createHistory()}>
                      <Switch>
                          <Route exact path="/" component={Home} />
                          <Route path="/test" component={Test} />
@@ -27,7 +25,7 @@ class Root extends Component {
                 </Router>
                 <div className="footer-wrapper" >
                 </div>
-            </div>
+            </div>                
         );
     }
 }

@@ -16,22 +16,24 @@ const PlainHeader = ({
     search
     }) => {
         return (
-            <div className="row">
-                <div className="header-search col-sm-8 col-md-8 col-lg-8">
+            <span>
+                <div className="col-sm-8 col-md-8 pull-left custom-nav-left">
                     <NavSearch search={search}  />
                 </div>
-                <div className="header-button col-sm-4 col-md-4 col-lg-4">
-                    <button type="button" className="btn btn-sm btn-success btn-ask-question"> Ask New Question  </button>
-                    <AuthModal
-                        isAuthenticated={isAuthenticated}
-                        signUp ={signUp}
-                        signupResponse ={signupResponse}
-                        signupFail ={signupFail}
-                        signIn ={signIn}
-                        signinFail ={signinFail}
-                        />
+                <div className="col-sm-2 col-md-2 pull-right custom-nav-right">
+                    <ul className="nav navbar-nav navbar-right">
+                        <button className="btn btn-sm btn-danger navbar-btn">Ask New Question</button>
+                        <AuthModal
+                            isAuthenticated={isAuthenticated}
+                            signUp ={signUp}
+                            signupResponse ={signupResponse}
+                            signupFail ={signupFail}
+                            signIn ={signIn}
+                            signinFail ={signinFail}
+                            />
+                    </ul>
                 </div>
-            </div>
+            </span>
         );
 };
 
