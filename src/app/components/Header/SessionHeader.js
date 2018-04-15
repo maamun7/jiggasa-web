@@ -16,11 +16,14 @@ const SessionHeader = ({
     search
     }) => {
         return (
-            <span>
-                <div className="header-search col-sm-7 col-md-7 col-lg-7">
+            <div className="row">
+                <div className="col-sm-3 col-md-3 col-lg-3">
+                    
+                </div>
+                <div className="header-search col-sm-4 col-md-4 col-lg-4">
                     <NavSearch search={search}  />
                 </div>
-                <div className="header-button col-sm-3 col-md-3 col-lg-3 text-right">
+                <div className="col-sm-4 col-md-5 col-lg-5">
                     <button type="button" className="btn btn-sm btn-success btn-ask-question"> Ask New Question  </button>
                     <NavUser
                         isAuthenticated={isAuthenticated}
@@ -33,7 +36,7 @@ const SessionHeader = ({
                         signOut ={signOut}
                     />
                 </div>
-            </span>
+            </div>
         );
 };
 

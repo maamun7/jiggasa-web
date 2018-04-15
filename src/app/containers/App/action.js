@@ -59,6 +59,7 @@ const getSignOut = () => ({
 });
 
 export const signOut = () => (dispatch) => {
+    console.log('DEBUGG :', 'Call signout function !');
     localStorage.setItem('oauth', JSON.stringify(''));
     dispatch(getSignOut());
 };

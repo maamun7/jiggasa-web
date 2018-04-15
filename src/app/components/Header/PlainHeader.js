@@ -16,7 +16,7 @@ const PlainHeader = ({
     search
     }) => {
         return (
-            <div>
+            <div className="row">
                 <div className="header-search col-sm-8 col-md-8 col-lg-8">
                     <NavSearch search={search}  />
                 </div>

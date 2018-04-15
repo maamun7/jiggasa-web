@@ -1,5 +1,4 @@
 import React, { Component} from 'react';
-import { verifyAuthToken, getAuthInfo, doEmptyAuthSession } from '../../../utils/AuthHelper';
 import SessionHeader from './SessionHeader';
 import PlainHeader from './PlainHeader';
 
@@ -24,6 +23,7 @@ const Header = ({
                                         isAuthenticated={isAuthenticated}
                                         user ={user}
                                         search ={search}
+                                        signOut ={signOut} 
                                         />
                                     ) : (
                                     <PlainHeader   
