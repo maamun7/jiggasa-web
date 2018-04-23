@@ -1,0 +1,42 @@
+.user_image a {
+	padding-top: 1px!important;
+	padding-bottom: 0px!important;
+}
+.user_image a img{
+	border-radius:50px;
+}
+
+.body_left ul li a {
+    font-size: 14px;
+}
+.body_right ul li a {
+    font-size: 14px;
+}
+.body_right ul li, .body_left ul li{
+	margin-bottom:8px;
+}
+/* nav form css code */
+.inner-addon {
+  position: relative;
+  width: 100%;
+}
+.inner-addon .nav-search-icon {
+  position: absolute;
+  padding: 7px;
+  pointer-events: none;
+}
+.right-addon .nav-search-icon { right: 0px;}
+
+.right-addon input { padding-right: 30px; }
+
+
+@media (max-width: 576px) { 
+	.navbar .input-group{
+		margin:10px 0px;
+	}
+	.navbar .user_image a {
+    padding-top: 7px!important;
+	margin-right:10px;
+	}
+}
+

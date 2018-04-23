@@ -14,7 +14,7 @@ class Root extends Component {
     render() {
         return (  
             <div>
-                <nav className="navbar navbar-default custom_nav">
+                <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm">    
                     <Header/>
                 </nav>
                 <Router history={createHistory()}>

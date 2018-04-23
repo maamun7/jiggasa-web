@@ -12,14 +12,12 @@ class NavSearch extends React.Component {
 
     render() {
         return (
-            <form className="navbar-form navbar-left">
-                <div className="form-group" style={ { display:"inline"} }>
-                    <div className="input-group" style={ { display:"table"} }>
-                        <span className="input-group-addon" style={ { width:"1%"} }><span className="fa fa-search"></span></span>
-                        <input className="form-control" name="search" placeholder="Search Here" autocomplete="off" autofocus="autofocus" type="text" />
-                    </div>
-                </div>
-            </form>
+            <form className="input-group">
+                <div className="inner-addon right-addon">
+                    <i className="nav-search-icon fa fa-search" title="Home" aria-hidden="true"></i>
+                    <input className="form-control form-control-sm mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                </div>                          
+            </form>	
         );
     }
 }
