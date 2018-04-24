@@ -84,7 +84,7 @@ class AuthModal extends React.Component {
         const modalHeadTxt = isOpenSignUpModel ? 'User sign up' : 'User sign in';
         return (
             <span>
-                <li className="nav-item"  onClick={this.openModal } ><a href="index.html"><button className="btn btn-outline-success btn-sm my-2 my-sm-0" type="submit">Sign In</button></a></li>
+                <li className="nav-item"  onClick={this.openModal } ><button className="btn btn-outline-success btn-sm my-2 my-sm-0" type="submit">Sign In</button></li>
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}

@@ -14,21 +14,26 @@ const NavUser = ({
     }) => {
     if (isAuthenticated) {
         return (
-            <SessionInfo 
-                user ={user}
-                signOut ={signOut}
-                />
+            <ul className="navbar-nav my-lg-0 justify-content-end">
+                <div className="d-flex flex-row justify-content-center">
+                    <li className="nav-item dropdown user_image">
+                        <a className="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="https://lh3.googleusercontent.com/-m9ETQ1gFbG8/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWADq_WQAX94qs5ikBhhTLAxRdI_nA/s32-c-mo/photo.jpg" />
+                        </a>
+                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a className="dropdown-item" href="#">Action</a>
+                            <a className="dropdown-item" href="#">Another action</a>
+                            <div className="dropdown-divider"></div>
+                            <a className="dropdown-item" href="logout.html">Logout</a>
+                        </div>
+                    </li>
+                    <li className="nav-item"><button className="btn btn-sm my-2 my-sm-0 btn-danger" type="submit">Add Question</button></li>
+                </div>
+            </ul>
         );
     } else {
         return (
-            <AuthModal
-                isAuthenticated={isAuthenticated}
-                signUp ={signUp}
-                signupResponse ={signupResponse}
-                signupFail ={signupFail}
-                signIn ={signIn}
-                signinFail ={signinFail}
-                />
+          ''  
         );
     }
 
