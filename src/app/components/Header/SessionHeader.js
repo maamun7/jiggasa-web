@@ -32,7 +32,7 @@ const SessionHeader = ({
                         <NavSearch search={search}  />
 					</div>
 					<div className="col-md-3 col-lg-3 ml-auto">
-						
+						<NavUser isAuthenticated={isAuthenticated} signOut={signOut} />
 					</div>					
 				</div>
             );

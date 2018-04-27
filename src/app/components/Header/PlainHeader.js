@@ -1,5 +1,6 @@
 import React from 'react';
 import AuthModal from '../Form/AuthModal';
+import AskQuestionHtml from '../Form/AskQuestionHtml';
 import SessionInfo from '../Header/SessionInfo';
 import NavSearch from './NavSearch';
 import NavUser from './NavUser';
@@ -23,7 +24,7 @@ const PlainHeader = ({
                 <div className="col-md-3 col-lg-3">
                     <ul className="navbar-nav my-lg-0 justify-content-end">
                         <div className="d-flex flex-row justify-content-center">
-                            <li className="nav-item mr-3"><a href="#"><button className="btn btn-danger btn-sm my-2 my-sm-0" type="submit">Ask New Question</button></a></li>
+                            <AskQuestionHtml />
                             <AuthModal
                                 isAuthenticated={isAuthenticated}
                                 signUp ={signUp}
