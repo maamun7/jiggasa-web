@@ -28,8 +28,23 @@ const signUpFailure = msg => ({
     msg : msg.msg
 });
 
-export const search = keyword => async (dispatch) => {
-   /* const { json } = await callApi(`${USER_URL}?oauth_token=${oauthToken}`);
-    const { result, entities } = normalize(json, userSchema);
-    dispatch(fetchSessionUserSuccess(result, entities));*/
+export const search = (keyword) => async (dispatch) => {
+    console.log('KEYWORD :', keyword);
+    const response = await callPostApi(consts.SEARCH_URL, keyword, false);
+    const { success, data } = response;
+    if (success) {
+        dispatch(searchResponse({success, data}));
+    } else {
+        dispatch(searchFailure({success, data}));
+    }
 };
+
+const searchResponse = responseObj => ({
+    type : consts.SEARCH_RESPONSE,
+    msg : responseObj
+});
+
+const searchFailure = msg => ({
+    type : consts.SEARCH_FAILURE,
+    msg : msg.msg
+});
