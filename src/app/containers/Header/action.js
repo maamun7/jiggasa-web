@@ -1,6 +1,7 @@
 //import * as types from '../_constants/ActionTypes';
 import { callApi, callGetApi, callPostApi } from '../../../utils/AppUtils';
 import * as consts from './constants';
+import * as homeConsts from '../Home/constants';
 
 export const signUp = (inputs) => async (dispatch) => {
     const response = await callPostApi(consts.SIGNUP_URL, inputs, false);
@@ -29,9 +30,10 @@ const signUpFailure = msg => ({
 });
 
 export const search = (keyword) => async (dispatch) => {
-    console.log('KEYWORD :', keyword);
-    const response = await callPostApi(consts.SEARCH_URL, keyword, false);
+   // console.log('calling search api :', keyword);
+    const response = await callGetApi(consts.SEARCH_URL, {keyword : keyword }, false);
     const { success, data } = response;
+   // console.log('data :', data);
     if (success) {
         dispatch(searchResponse({success, data}));
     } else {
@@ -40,11 +42,11 @@ export const search = (keyword) => async (dispatch) => {
 };
 
 const searchResponse = responseObj => ({
-    type : consts.SEARCH_RESPONSE,
-    msg : responseObj
+    type : homeConsts.SEARCH_RESPONSE,
+    data : responseObj.data
 });
 
 const searchFailure = msg => ({
-    type : consts.SEARCH_FAILURE,
+    type : homeConsts.SEARCH_FAILURE,
     msg : msg.msg
 });

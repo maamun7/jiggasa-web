@@ -9,7 +9,8 @@ const HomeContainer = props => <Home {...props} />;
 
 const mapStateToProps = (state) => {
     return {
-        isAuthenticated: getIsAuthenticated(state)
+        isAuthenticated: getIsAuthenticated(state),
+        searchResponse: state.home.searchResponse
     }
 };
 
