@@ -11,7 +11,7 @@ const config = {
     ],
 
     output: {
-        path: path.resolve(__dirname , 'dist'),
+        path: path.resolve(__dirname , 'jiggdist'),
         filename: 'app.bundle.js',
         publicPath: '/'
     },
@@ -87,7 +87,7 @@ const config = {
 
     devServer: {
         inline: true,
-        contentBase: './dist',
+        contentBase: './jiggdist',
         host: '127.0.0.1',
         port: 8080
     }
